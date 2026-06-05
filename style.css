@@ -1,4 +1,4 @@
-/* 🌸 SakuraCast Global Style (Stable Version) */
+/* 🌸 SakuraCast Global Style (Final Clean System) */
 
 /* =========================
    THEME VARIABLES
@@ -28,7 +28,7 @@ body.dark{
 }
 
 /* =========================
-   GLOBAL RESET
+   RESET / BASE
 ========================= */
 
 *{
@@ -38,20 +38,19 @@ body.dark{
     font-family:Arial, sans-serif;
 }
 
-/* 🌙 prevent flash background */
+/* 🌙 prevent flash */
 html,
 body{
     background:var(--bg);
     color:var(--text);
 }
 
-/* smooth theme switching */
 body{
     transition:background 0.25s ease, color 0.25s ease;
 }
 
 /* =========================
-   HEADER / NAV
+   HEADER
 ========================= */
 
 header{
@@ -68,27 +67,24 @@ header{
     z-index:100;
 }
 
-/* logo */
-.logo{
-    font-size:24px;
-    font-weight:bold;
-    color:var(--primary);
-}
-
-/* nav */
-nav a,
 header a{
-    margin:0 12px;
     text-decoration:none;
     color:var(--text);
     font-weight:600;
     font-size:14px;
+    margin:0 12px;
 
     transition:0.2s;
 }
 
-nav a:hover,
 header a:hover{
+    color:var(--primary);
+}
+
+/* logo variant */
+.logo{
+    font-size:24px;
+    font-weight:bold;
     color:var(--primary);
 }
 
@@ -112,11 +108,7 @@ header a:hover{
     transform:scale(1.05);
 }
 
-/* primary / secondary buttons */
-.btns{
-    margin-top:25px;
-}
-
+/* generic buttons */
 .btn{
     display:inline-block;
     padding:12px 20px;
@@ -129,6 +121,10 @@ header a:hover{
     transition:0.2s;
 }
 
+.btn:hover{
+    transform:translateY(-2px);
+}
+
 .primary{
     background:var(--primary);
     color:white;
@@ -139,33 +135,15 @@ header a:hover{
     color:var(--primary);
 }
 
-.btn:hover{
-    transform:translateY(-2px);
-}
-
 /* =========================
-   HERO
+   LAYOUT
 ========================= */
 
-.hero{
-    padding:80px 20px;
-    text-align:center;
+.container{
+    max-width:1000px;
+    margin:40px auto;
+    padding:0 20px;
 }
-
-.hero h1{
-    font-size:52px;
-    margin-bottom:10px;
-}
-
-.hero p{
-    max-width:600px;
-    margin:auto;
-    opacity:0.8;
-}
-
-/* =========================
-   LAYOUT SECTIONS
-========================= */
 
 .section{
     padding:40px;
@@ -177,7 +155,10 @@ header a:hover{
     margin-bottom:20px;
 }
 
-/* grid system */
+/* =========================
+   GRID
+========================= */
+
 .grid{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
@@ -213,14 +194,23 @@ header a:hover{
 }
 
 /* =========================
-   PROFILE / DASHBOARD
+   DASHBOARD STATS
 ========================= */
 
-.container{
-    max-width:1000px;
-    margin:40px auto;
-    padding:0 20px;
+.stat{
+    font-size:28px;
+    font-weight:bold;
+    color:var(--primary);
 }
+
+.subtitle{
+    opacity:0.7;
+    margin-top:6px;
+}
+
+/* =========================
+   PROFILE
+========================= */
 
 .profile-card{
     background:var(--card);
@@ -245,6 +235,26 @@ header a:hover{
 }
 
 /* =========================
+   HERO
+========================= */
+
+.hero{
+    padding:80px 20px;
+    text-align:center;
+}
+
+.hero h1{
+    font-size:52px;
+    margin-bottom:10px;
+}
+
+.hero p{
+    max-width:600px;
+    margin:auto;
+    opacity:0.8;
+}
+
+/* =========================
    FOOTER
 ========================= */
 
@@ -255,7 +265,7 @@ footer{
 }
 
 /* =========================
-   ANIMATIONS (future)
+   ANIMATIONS
 ========================= */
 
 @keyframes float{
