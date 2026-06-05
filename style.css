@@ -10,7 +10,7 @@
 }
 
 body {
-  background: #fff0f6; /* světlá sakura růžová */
+  background: #fff0f6;
   color: #333;
   transition: background 0.3s ease, color 0.3s ease;
   line-height: 1.5;
@@ -29,14 +29,14 @@ header {
   margin-bottom: 30px;
 }
 
-header h1, header .logo {
+header h1,
+header .logo {
   color: #ff4d6d;
   font-weight: 700;
   font-size: 2rem;
   text-decoration: none;
 }
 
-/* Navigační odkazy */
 nav a {
   margin: 0 12px;
   text-decoration: none;
@@ -44,10 +44,13 @@ nav a {
   font-weight: 600;
   font-size: 14px;
   transition: color 0.3s ease;
+  cursor: pointer;
 }
 
-nav a:hover {
+nav a:hover,
+nav a.active {
   color: #ff4d6d;
+  font-weight: 700;
 }
 
 /* Tlačítko pro přepínání světlého/tmavého režimu */
@@ -59,6 +62,7 @@ nav a:hover {
   font-size: 1.5rem;
   background-color: #ff8fab;
   color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   transition: background-color 0.3s ease;
 }
 
@@ -72,7 +76,8 @@ nav a:hover {
    HLAVNÍ OBSAH + KONTEJNERY
 ========================= */
 
-main, .container {
+main,
+.container {
   max-width: 900px;
   margin: 0 auto;
   padding: 0 20px 40px;
@@ -107,7 +112,8 @@ main, .container {
 }
 
 /* Tlačítka */
-button {
+button,
+a.btn {
   background-color: #ff8fab;
   border: none;
   border-radius: 6px;
@@ -117,10 +123,15 @@ button {
   cursor: pointer;
   transition: background-color 0.3s ease;
   margin: 0.5rem 0;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
 }
 
 button:hover,
-button:focus {
+button:focus,
+a.btn:hover,
+a.btn:focus {
   background-color: #ff517e;
   outline: none;
 }
@@ -130,15 +141,14 @@ button:focus {
   padding: 12px 20px;
   border-radius: 999px;
   font-weight: bold;
-  display: inline-block;
 }
 
 /* Karty */
 .card {
   background-color: white;
   border-radius: 16px;
-  padding: 16px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  padding: 20px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
   transition: transform 0.2s ease;
   margin-bottom: 20px;
 }
@@ -179,7 +189,7 @@ button:focus {
   background: white;
   padding: 20px;
   border-radius: 16px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
   margin-bottom: 24px;
 }
 
@@ -206,6 +216,9 @@ footer {
   text-align: center;
   color: #999;
   font-size: 0.9rem;
+  background-color: #f8f8f8;
+  border-top: 1px solid #e0e0e0;
+  padding: 20px;
 }
 
 /* =========================
@@ -224,15 +237,19 @@ body.dark header .logo {
 
 body.dark nav a {
   color: #e6b0ea;
+  cursor: pointer;
 }
 
-body.dark nav a:hover {
+body.dark nav a:hover,
+body.dark nav a.active {
   color: #ff9bcf;
+  font-weight: 700;
 }
 
 body.dark .toggle {
   background-color: #bb86fc;
   color: #1e1e2f;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
 }
 
 body.dark .toggle:hover,
@@ -241,20 +258,23 @@ body.dark .toggle:focus {
   color: white;
 }
 
-body.dark button {
+body.dark button,
+body.dark a.btn {
   background-color: #bb86fc;
   color: #1e1e2f;
 }
 
 body.dark button:hover,
-body.dark button:focus {
+body.dark button:focus,
+body.dark a.btn:hover,
+body.dark a.btn:focus {
   background-color: #9c6dfd;
   color: white;
 }
 
 body.dark .card {
   background-color: #241b2e;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
 }
 
 body.dark .tag {
@@ -264,10 +284,29 @@ body.dark .tag {
 
 body.dark .profile-card {
   background-color: #241b2e;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
 }
 
 body.dark .avatar {
   background-color: #7c4d7d;
   color: #f1d7ff;
+}
+
+/* =========================
+   RESPONSIVITA
+========================= */
+
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  header {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .hero h2 {
+    font-size: 1.8rem;
+  }
 }
