@@ -1,0 +1,158 @@
+/* 🌸 SakuraCast Global Style */
+
+:root{
+    --bg:#fff7fb;
+    --card:#ffffff;
+    --text:#2b2b2b;
+    --pink:#e889b5;
+    --soft:#f3b6cc;
+}
+
+body.dark{
+    --bg:#17121f;
+    --card:#241b2e;
+    --text:#f5f5f5;
+    --pink:#f4a6c1;
+    --soft:#3a2a44;
+}
+
+/* RESET */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:var(--bg);
+    color:var(--text);
+    transition:0.3s;
+}
+
+/* HEADER */
+header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 40px;
+    background:var(--card);
+    box-shadow:0 2px 12px rgba(0,0,0,0.08);
+    position:sticky;
+    top:0;
+}
+
+/* LOGO */
+.logo{
+    font-size:24px;
+    font-weight:bold;
+    color:var(--pink);
+}
+
+/* NAV */
+nav a{
+    margin:0 12px;
+    text-decoration:none;
+    color:var(--text);
+    font-weight:600;
+    font-size:14px;
+}
+
+/* BUTTON */
+.toggle{
+    cursor:pointer;
+    border:none;
+    padding:8px 12px;
+    border-radius:8px;
+    background:var(--soft);
+    color:var(--text);
+}
+
+/* HERO */
+.hero{
+    padding:80px 20px;
+    text-align:center;
+}
+
+.hero h1{
+    font-size:52px;
+    margin-bottom:10px;
+}
+
+.hero p{
+    max-width:600px;
+    margin:auto;
+    opacity:0.8;
+}
+
+/* BUTTONS */
+.btns{
+    margin-top:25px;
+}
+
+.btn{
+    display:inline-block;
+    padding:12px 20px;
+    margin:6px;
+    border-radius:999px;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.primary{
+    background:var(--pink);
+    color:white;
+}
+
+.secondary{
+    border:2px solid var(--pink);
+    color:var(--pink);
+}
+
+/* SECTIONS */
+.section{
+    padding:40px;
+    max-width:1000px;
+    margin:auto;
+}
+
+.section h2{
+    margin-bottom:20px;
+}
+
+/* GRID */
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:16px;
+}
+
+/* CARD */
+.card{
+    background:var(--card);
+    padding:16px;
+    border-radius:16px;
+    box-shadow:0 6px 20px rgba(0,0,0,0.08);
+    transition:0.2s;
+}
+
+.card:hover{
+    transform:translateY(-3px);
+}
+
+/* TAG */
+.tag{
+    font-size:12px;
+    padding:4px 10px;
+    border-radius:999px;
+    background:var(--soft);
+    display:inline-block;
+    margin-bottom:8px;
+}
+
+/* FOOTER */
+footer{
+    text-align:center;
+    padding:40px;
+    opacity:0.6;
+}
