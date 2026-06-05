@@ -5,20 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>SakuraCast - Projects</title>
 
-<!-- 🌸 GLOBAL STYLE -->
 <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
 <header>
-    <div><a href="index.html">🌸 SakuraCast</a></div>
+    <div class="logo">🌸 SakuraCast</div>
 
-    <div>
+    <nav>
         <a href="talent.html">Talent Search</a>
-    </div>
+    </nav>
 
-    <!-- 🌙 DARK MODE -->
     <button class="toggle" onclick="toggleTheme()">🌙</button>
 </header>
 
@@ -26,27 +24,34 @@
 
     <h1>Browse Projects</h1>
 
-    <div class="card">
-        <div class="tag">Game</div>
-        <a href="project.html"><h2>Fantasy RPG - Hero Role</h2></a>
-        <p>Looking for strong heroic male voice.</p>
-    </div>
+    <p class="subtitle">
+        Discover casting calls from studios, indie developers, and creators worldwide.
+    </p>
 
-    <div class="card">
-        <div class="tag">Anime</div>
-        <a href="project.html"><h2>Sakura Spirits</h2></a>
-        <p>Soft emotional female voice needed.</p>
-    </div>
+    <div class="grid">
 
-    <div class="card">
-        <div class="tag">Commercial</div>
-        <a href="project.html"><h2>Tech Product Voiceover</h2></a>
-        <p>Confident professional tone.</p>
+        <a href="project.html" class="card" style="text-decoration:none; color:inherit;">
+            <div class="tag">Game</div>
+            <h2>Fantasy RPG - Hero Role</h2>
+            <p>Looking for strong heroic male voice.</p>
+        </a>
+
+        <a href="project.html" class="card" style="text-decoration:none; color:inherit;">
+            <div class="tag">Anime</div>
+            <h2>Sakura Spirits</h2>
+            <p>Soft emotional female voice needed.</p>
+        </a>
+
+        <a href="project.html" class="card" style="text-decoration:none; color:inherit;">
+            <div class="tag">Commercial</div>
+            <h2>Tech Product Voiceover</h2>
+            <p>Confident professional tone.</p>
+        </a>
+
     </div>
 
 </div>
 
-<!-- 🌸 GLOBAL SCRIPT -->
 <script src="script.js"></script>
 
 </body>
