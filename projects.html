@@ -1,58 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>SakuraCast - Projects</title>
-
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SakuraCast - Projects</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
 
 <header>
-    <div class="logo">🌸 SakuraCast</div>
+  <div class="logo"><a href="index.html" style="text-decoration:none; color:inherit;">🌸 SakuraCast</a></div>
 
-    <nav>
-        <a href="talent.html">Talent Search</a>
-    </nav>
+  <nav>
+    <a href="talent.html">Talent Search</a>
+  </nav>
 
-    <button class="toggle" onclick="toggleTheme()">🌙</button>
+  <button class="toggle" aria-label="Toggle Dark/Light Mode">🌙</button>
 </header>
 
-<div class="container">
+<main class="container">
+  <h1>Browse Projects</h1>
+  <p class="subtitle">
+    Discover casting calls from studios, indie developers, and creators worldwide.
+  </p>
 
-    <h1>Browse Projects</h1>
+  <div class="grid">
+    <a href="project.html" class="card" style="text-decoration:none; color:inherit;">
+      <div class="tag">Game</div>
+      <h2>Fantasy RPG - Hero Role</h2>
+      <p>Looking for strong heroic male voice.</p>
+    </a>
 
-    <p class="subtitle">
-        Discover casting calls from studios, indie developers, and creators worldwide.
-    </p>
+    <a href="project.html" class="card" style="text-decoration:none; color:inherit;">
+      <div class="tag">Anime</div>
+      <h2>Sakura Spirits</h2>
+      <p>Soft emotional female voice needed.</p>
+    </a>
 
-    <div class="grid">
-
-        <a href="project.html" class="card" style="text-decoration:none; color:inherit;">
-            <div class="tag">Game</div>
-            <h2>Fantasy RPG - Hero Role</h2>
-            <p>Looking for strong heroic male voice.</p>
-        </a>
-
-        <a href="project.html" class="card" style="text-decoration:none; color:inherit;">
-            <div class="tag">Anime</div>
-            <h2>Sakura Spirits</h2>
-            <p>Soft emotional female voice needed.</p>
-        </a>
-
-        <a href="project.html" class="card" style="text-decoration:none; color:inherit;">
-            <div class="tag">Commercial</div>
-            <h2>Tech Product Voiceover</h2>
-            <p>Confident professional tone.</p>
-        </a>
-
-    </div>
-
-</div>
+    <a href="project.html" class="card" style="text-decoration:none; color:inherit;">
+      <div class="tag">Commercial</div>
+      <h2>Tech Product Voiceover</h2>
+      <p>Confident professional tone.</p>
+    </a>
+  </div>
+</main>
 
 <script src="script.js"></script>
-
 </body>
 </html>
