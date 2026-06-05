@@ -5,6 +5,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>SakuraCast - Talent</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Doplněk pro filtry */
+    .filters {
+      background: white;
+      padding: 20px;
+      margin-bottom: 30px;
+      border-radius: 16px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .filters h4 {
+      margin-top: 0;
+      color: #ff4d6d;
+      margin-bottom: 12px;
+    }
+
+    .filter-group {
+      margin-bottom: 20px;
+    }
+
+    .filter-group label {
+      display: block;
+      margin-bottom: 6px;
+      cursor: pointer;
+    }
+
+    .filter-group input[type="checkbox"] {
+      margin-right: 8px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
 
@@ -20,28 +51,143 @@
 
 <main class="container">
   <h1>Talent Search</h1>
-  <p class="subtitle">
-    Discover voice actors from around the world and find the perfect voice for your project.
-  </p>
 
-  <div class="grid">
-    <a href="profile.html" class="card" style="text-decoration:none; color:inherit;">
-      <h3>Yuki VA</h3>
-      <p>Japanese / English • Anime voices</p>
-    </a>
+  <section class="filters">
 
-    <a href="profile.html" class="card" style="text-decoration:none; color:inherit;">
-      <h3>Max Stone</h3>
-      <p>Deep male voice • Games</p>
-    </a>
+    <div class="filter-group">
+      <h4>Gender</h4>
+      <label><input type="checkbox" name="gender" value="Male"> Male</label>
+      <label><input type="checkbox" name="gender" value="Female"> Female</label>
+      <label><input type="checkbox" name="gender" value="Non-binary"> Non-binary</label>
+    </div>
 
-    <a href="profile.html" class="card" style="text-decoration:none; color:inherit;">
-      <h3>Luna Rose</h3>
-      <p>Commercial / soft voice</p>
-    </a>
-  </div>
+    <div class="filter-group">
+      <h4>Age Range</h4>
+      <label><input type="checkbox" name="age" value="Child"> Child</label>
+      <label><input type="checkbox" name="age" value="Teen"> Teen</label>
+      <label><input type="checkbox" name="age" value="Young Adult"> Young Adult</label>
+      <label><input type="checkbox" name="age" value="Adult"> Adult</label>
+      <label><input type="checkbox" name="age" value="Middle-aged"> Middle-aged</label>
+      <label><input type="checkbox" name="age" value="Senior"> Senior</label>
+    </div>
+
+    <div class="filter-group">
+      <h4>Accent / Dialect</h4>
+      <strong>Europe</strong><br />
+      <label><input type="checkbox" name="accent" value="British English"> British English</label>
+      <label><input type="checkbox" name="accent" value="German"> German</label>
+      <label><input type="checkbox" name="accent" value="Russian"> Russian</label>
+      <label><input type="checkbox" name="accent" value="Czech"> Czech</label>
+      <label><input type="checkbox" name="accent" value="French"> French</label>
+      <label><input type="checkbox" name="accent" value="Spanish (Spain)"> Spanish (Spain)</label>
+      <br />
+      <strong>North America</strong><br />
+      <label><input type="checkbox" name="accent" value="American English"> American English</label>
+      <label><input type="checkbox" name="accent" value="Canadian English"> Canadian English</label>
+      <label><input type="checkbox" name="accent" value="Mexican Spanish"> Mexican Spanish</label>
+    </div>
+
+    <div class="filter-group">
+      <h4>Voice Style</h4>
+      <label><input type="checkbox" name="style" value="Soft"> Soft</label>
+      <label><input type="checkbox" name="style" value="Deep"> Deep</label>
+      <label><input type="checkbox" name="style" value="Aggressive"> Aggressive</label>
+      <label><input type="checkbox" name="style" value="Emotional"> Emotional</label>
+      <label><input type="checkbox" name="style" value="Neutral"> Neutral</label>
+      <label><input type="checkbox" name="style" value="Comic"> Comic</label>
+      <label><input type="checkbox" name="style" value="Narration"> Narration</label>
+    </div>
+
+    <div class="filter-group">
+      <h4>Availability</h4>
+      <label><input type="checkbox" name="availability" value="Immediate"> Immediate</label>
+      <label><input type="checkbox" name="availability" value="Within a week"> Within a week</label>
+      <label><input type="checkbox" name="availability" value="Within a month"> Within a month</label>
+      <label><input type="checkbox" name="availability" value="Negotiable"> Negotiable</label>
+    </div>
+
+    <button id="clear-filters" class="btn secondary">Clear Filters</button>
+  </section>
+
+  <section>
+    <div class="grid" id="talent-list">
+
+      <div class="card" data-gender="Female" data-age="Young Adult" data-accent="Japanese" data-style="Soft" data-availability="Immediate">
+        <h3>Yuki VA</h3>
+        <p>Japanese / English • Soft Anime Voices</p>
+      </div>
+
+      <div class="card" data-gender="Male" data-age="Adult" data-accent="American English" data-style="Deep" data-availability="Within a week">
+        <h3>Max Stone</h3>
+        <p>Deep male voice • Game characters</p>
+      </div>
+
+      <div class="card" data-gender="Female" data-age="Adult" data-accent="British English" data-style="Neutral" data-availability="Negotiable">
+        <h3>Luna Rose</h3>
+        <p>Commercial / soft voice</p>
+      </div>
+
+      <div class="card" data-gender="Non-binary" data-age="Middle-aged" data-accent="Czech" data-style="Emotional" data-availability="Within a month">
+        <h3>Alex Novak</h3>
+        <p>Versatile voice • Emotional roles</p>
+      </div>
+
+    </div>
+  </section>
+
 </main>
 
+<footer>
+  <p>© 2024 SakuraCast • Built with 🌸</p>
+</footer>
+
 <script src="script.js"></script>
+<script>
+function filterTalent() {
+  const talents = document.querySelectorAll('#talent-list .card');
+
+  function getCheckedValues(name) {
+    return Array.from(document.querySelectorAll(`input[name="${name}"]:checked`)).map(i => i.value);
+  }
+
+  const selectedGenders = getCheckedValues('gender');
+  const selectedAges = getCheckedValues('age');
+  const selectedAccents = getCheckedValues('accent');
+  const selectedStyles = getCheckedValues('style');
+  const selectedAvailability = getCheckedValues('availability');
+
+  talents.forEach(card => {
+    const gender = card.getAttribute('data-gender');
+    const age = card.getAttribute('data-age');
+    const accent = card.getAttribute('data-accent');
+    const style = card.getAttribute('data-style');
+    const availability = card.getAttribute('data-availability');
+
+    const matchesGender = selectedGenders.length === 0 || selectedGenders.includes(gender);
+    const matchesAge = selectedAges.length === 0 || selectedAges.includes(age);
+    const matchesAccent = selectedAccents.length === 0 || selectedAccents.includes(accent);
+    const matchesStyle = selectedStyles.length === 0 || selectedStyles.includes(style);
+    const matchesAvailability = selectedAvailability.length === 0 || selectedAvailability.includes(availability);
+
+    if (matchesGender && matchesAge && matchesAccent && matchesStyle && matchesAvailability) {
+      card.style.display = '';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+
+document.querySelectorAll('.filters input[type="checkbox"]').forEach(input => {
+  input.addEventListener('change', filterTalent);
+});
+
+document.getElementById('clear-filters').addEventListener('click', () => {
+  document.querySelectorAll('.filters input[type="checkbox"]').forEach(i => i.checked = false);
+  filterTalent();
+});
+
+filterTalent();
+</script>
+
 </body>
 </html>
