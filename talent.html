@@ -1,55 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>SakuraCast - Talent</title>
-
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SakuraCast - Talent</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
 
 <header>
-    <div class="logo">🌸 SakuraCast</div>
+  <div class="logo"><a href="index.html" style="text-decoration:none; color:inherit;">🌸 SakuraCast</a></div>
 
-    <nav>
-        <a href="projects.html">Projects</a>
-    </nav>
+  <nav>
+    <a href="projects.html">Projects</a>
+  </nav>
 
-    <button class="toggle" onclick="toggleTheme()">🌙</button>
+  <button class="toggle" aria-label="Toggle Dark/Light Mode">🌙</button>
 </header>
 
-<div class="container">
+<main class="container">
+  <h1>Talent Search</h1>
+  <p class="subtitle">
+    Discover voice actors from around the world and find the perfect voice for your project.
+  </p>
 
-    <h1>Talent Search</h1>
+  <div class="grid">
+    <a href="profile.html" class="card" style="text-decoration:none; color:inherit;">
+      <h3>Yuki VA</h3>
+      <p>Japanese / English • Anime voices</p>
+    </a>
 
-    <p class="subtitle">
-        Discover voice actors from around the world and find the perfect voice for your project.
-    </p>
+    <a href="profile.html" class="card" style="text-decoration:none; color:inherit;">
+      <h3>Max Stone</h3>
+      <p>Deep male voice • Games</p>
+    </a>
 
-    <div class="grid">
-
-        <a href="profile.html" class="card" style="text-decoration:none; color:inherit;">
-            <h3>Yuki VA</h3>
-            <p>Japanese / English • Anime voices</p>
-        </a>
-
-        <a href="profile.html" class="card" style="text-decoration:none; color:inherit;">
-            <h3>Max Stone</h3>
-            <p>Deep male voice • Games</p>
-        </a>
-
-        <a href="profile.html" class="card" style="text-decoration:none; color:inherit;">
-            <h3>Luna Rose</h3>
-            <p>Commercial / soft voice</p>
-        </a>
-
-    </div>
-
-</div>
+    <a href="profile.html" class="card" style="text-decoration:none; color:inherit;">
+      <h3>Luna Rose</h3>
+      <p>Commercial / soft voice</p>
+    </a>
+  </div>
+</main>
 
 <script src="script.js"></script>
-
 </body>
 </html>
