@@ -5,43 +5,25 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>SakuraCast - Talent</title>
 
-<style>
-body{
-    font-family:Arial;
-    margin:0;
-    background:#fff7fb;
-}
-
-header{
-    padding:18px 30px;
-    background:white;
-    display:flex;
-    justify-content:space-between;
-}
-
-.container{
-    max-width:900px;
-    margin:40px auto;
-    padding:0 20px;
-}
-
-.card{
-    background:white;
-    padding:16px;
-    margin-bottom:14px;
-    border-radius:14px;
-}
-</style>
+<!-- 🌸 GLOBAL STYLE -->
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
 <header>
-    <a href="index.html">🌸 SakuraCast</a>
-    <a href="projects.html">Projects</a>
+    <div><a href="index.html">🌸 SakuraCast</a></div>
+
+    <div>
+        <a href="projects.html">Projects</a>
+    </div>
+
+    <!-- 🌙 DARK MODE -->
+    <button class="toggle" onclick="toggleTheme()">🌙</button>
 </header>
 
 <div class="container">
+
     <h1>Talent Search</h1>
 
     <div class="card">
@@ -58,7 +40,11 @@ header{
         <a href="profile.html"><h3>Luna Rose</h3></a>
         <p>Commercial / soft voice</p>
     </div>
+
 </div>
+
+<!-- 🌸 GLOBAL SCRIPT -->
+<script src="script.js"></script>
 
 </body>
 </html>
