@@ -1,18 +1,28 @@
-function toggleTheme(){
-    document.body.classList.toggle("dark");
-
-    if(document.body.classList.contains("dark")){
-        localStorage.setItem("theme","dark");
-    } else {
-        localStorage.setItem("theme","light");
-    }
-}
-
-// 🌙 SAFE INIT (runs after DOM is ready)
 window.addEventListener("DOMContentLoaded", () => {
-    const theme = localStorage.getItem("theme");
+  const themeToggleBtn = document.querySelector(".toggle");
+  const body = document.body;
 
-    if(theme === "dark"){
-        document.body.classList.add("dark");
-    }
+  // Načteme uložené nastavení z localStorage
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme === "dark") {
+    body.classList.add("dark");
+    if (themeToggleBtn) themeToggleBtn.textContent = "☀️";
+  } else {
+    if (themeToggleBtn) themeToggleBtn.textContent = "🌙";
+  }
+
+  // Přepínač tématu
+  if (themeToggleBtn) {
+    themeToggleBtn.addEventListener("click", () => {
+      body.classList.toggle("dark");
+
+      if (body.classList.contains("dark")) {
+        localStorage.setItem("theme", "dark");
+        themeToggleBtn.textContent = "☀️";  // slunce
+      } else {
+        localStorage.setItem("theme", "light");
+        themeToggleBtn.textContent = "🌙";  // měsíc
+      }
+    });
+  }
 });
