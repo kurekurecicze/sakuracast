@@ -9,58 +9,84 @@
 <body>
 
 <header>
-  <h1>SakuraCast</h1>
-  <button class="toggle" aria-label="Toggle Dark/Light Mode">🌙</button>
+  <div class="logo"><a href="index.html" style="text-decoration:none; color:inherit;">🌸 SakuraCast</a></div>
+
+  <nav>
+    <a href="projects.html">Projects</a>
+    <a href="talent.html">Talent Search</a>
+  </nav>
+
+  <div class="auth-buttons">
+    <a href="register.html" class="btn primary">Register</a>
+    <a href="login.html" class="btn secondary">Login</a>
+    <button class="toggle" aria-label="Toggle Dark/Light Mode">🌙</button>
+  </div>
 </header>
 
-<main>
+<main class="container">
+
   <section class="hero">
     <h2>Find Your Voice.</h2>
     <p>A modern casting platform for voice actors and directors.</p>
-    <div>
-      <a href="projects.html"><button>Browse Projects</button></a>
-      <a href="talent.html"><button>Join as Voice Actor</button></a>
+  </section>
+
+  <section class="explore grid">
+    <div class="card">
+      <h3>🎬 Projects</h3>
+      <p>Browse casting calls from studios and creators worldwide.</p>
+      <a href="projects.html" class="btn primary">Explore Projects</a>
+    </div>
+
+    <div class="card">
+      <h3>🎤 Talent Search</h3>
+      <p>Discover voice actors and find the perfect match for your project.</p>
+      <a href="talent.html" class="btn primary">Browse Talent</a>
     </div>
   </section>
 
   <section>
     <h3>🔥 Latest Casting Calls</h3>
-    <div class="card">
-      <div class="tag">Game</div>
-      <h4>Fantasy RPG - Main Hero</h4>
-      <p>Looking for a young male heroic voice.</p>
-    </div>
+    <div class="grid">
+      <div class="card">
+        <div class="tag">Game</div>
+        <h4>Fantasy RPG - Main Hero</h4>
+        <p>Looking for a young male heroic voice.</p>
+      </div>
 
-    <div class="card">
-      <div class="tag">Anime</div>
-      <h4>Sakura Spirits</h4>
-      <p>Soft female voice with emotional range.</p>
-    </div>
+      <div class="card">
+        <div class="tag">Anime</div>
+        <h4>Sakura Spirits</h4>
+        <p>Soft female voice with emotional range.</p>
+      </div>
 
-    <div class="card">
-      <div class="tag">Commercial</div>
-      <h4>Tech Ad Voiceover</h4>
-      <p>Confident corporate tone required.</p>
+      <div class="card">
+        <div class="tag">Commercial</div>
+        <h4>Tech Ad Voiceover</h4>
+        <p>Confident corporate tone required.</p>
+      </div>
     </div>
   </section>
 
   <section>
     <h3>🌸 Featured Voice Actors</h3>
-    <div class="card">
-      <h4>Yuki VA</h4>
-      <p>Japanese / English • Soft Anime Voices</p>
-    </div>
+    <div class="grid">
+      <div class="card">
+        <h4>Yuki VA</h4>
+        <p>Japanese / English • Soft Anime Voices</p>
+      </div>
 
-    <div class="card">
-      <h4>Max Stone</h4>
-      <p>Deep male voice • Game characters</p>
-    </div>
+      <div class="card">
+        <h4>Max Stone</h4>
+        <p>Deep male voice • Game characters</p>
+      </div>
 
-    <div class="card">
-      <h4>Luna Rose</h4>
-      <p>Versatile female voice • Commercials</p>
+      <div class="card">
+        <h4>Luna Rose</h4>
+        <p>Versatile female voice • Commercials</p>
+      </div>
     </div>
   </section>
+
 </main>
 
 <footer>
