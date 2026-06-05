@@ -1,289 +1,128 @@
-/* 🌸 SakuraCast Global Style (Final Stable Build) */
-
 /* =========================
-   THEME VARIABLES
+   RESET a ZÁKLADNÍ STYLY
 ========================= */
 
-:root{
-    --bg:#fff7fb;
-    --card:#ffffff;
-    --text:#2b2b2b;
-
-    --primary:#e889b5;
-    --soft:#f3b6cc;
-
-    --shadow:0 6px 20px rgba(0,0,0,0.08);
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* dark mode */
-body.dark{
-    --bg:#17121f;
-    --card:#241b2e;
-    --text:#f5f5f5;
-
-    --primary:#f4a6c1;
-    --soft:#3a2a44;
-
-    --shadow:0 6px 20px rgba(0,0,0,0.25);
+body {
+  background: #fff0f6; /* světlá sakura růžová */
+  color: #333;
+  transition: background 0.3s ease, color 0.3s ease;
+  line-height: 1.5;
+  min-height: 100vh;
+  padding: 20px;
 }
 
 /* =========================
-   RESET / BASE
+   HEADER + TOGGLE TLAČÍTKO
 ========================= */
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial, sans-serif;
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
 }
 
-/* 🌙 prevent flash + proper theming */
-html{
-    background:var(--bg);
+header h1 {
+  color: #ff4d6d;
+  font-weight: 700;
+  font-size: 2rem;
 }
 
-body{
-    background:var(--bg);
-    color:var(--text);
-    transition:background 0.25s ease, color 0.25s ease;
+/* Tlačítko pro přepínání světlého/tmavého režimu */
+.toggle {
+  cursor: pointer;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  background-color: #ff8fab;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.toggle:hover,
+.toggle:focus {
+  background-color: #ff517e;
+  outline: none;
 }
 
 /* =========================
-   HEADER
+   HLAVNÍ OBSAH
 ========================= */
 
-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:18px 40px;
-
-    background:var(--card);
-    box-shadow:var(--shadow);
-
-    position:sticky;
-    top:0;
-    z-index:100;
+main {
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-/* nav links */
-header a{
-    text-decoration:none;
-    color:var(--text);
-    font-weight:600;
-    font-size:14px;
-    margin:0 12px;
-
-    transition:0.2s;
+/* Tlačítka */
+button {
+  background-color: #ff8fab;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  padding: 10px 16px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin: 0.5rem 0;
 }
 
-header a:hover{
-    color:var(--primary);
-}
-
-/* logo */
-.logo{
-    font-size:24px;
-    font-weight:bold;
-    color:var(--primary);
+button:hover,
+button:focus {
+  background-color: #ff517e;
+  outline: none;
 }
 
 /* =========================
-   BUTTONS
+   PATIČKA
 ========================= */
 
-.toggle{
-    cursor:pointer;
-    border:none;
-    padding:8px 12px;
-    border-radius:10px;
-
-    background:var(--soft);
-    color:var(--text);
-
-    transition:0.2s;
-}
-
-.toggle:hover{
-    transform:scale(1.05);
-}
-
-/* generic buttons */
-.btn{
-    display:inline-block;
-    padding:12px 20px;
-    margin:6px;
-
-    border-radius:999px;
-    text-decoration:none;
-    font-weight:bold;
-
-    transition:0.2s;
-}
-
-.btn:hover{
-    transform:translateY(-2px);
-}
-
-.primary{
-    background:var(--primary);
-    color:white;
-}
-
-.secondary{
-    border:2px solid var(--primary);
-    color:var(--primary);
+footer {
+  margin-top: 50px;
+  text-align: center;
+  color: #999;
+  font-size: 0.9rem;
 }
 
 /* =========================
-   LAYOUT
+   TMAVÝ REŽIM
 ========================= */
 
-.container{
-    max-width:1000px;
-    margin:40px auto;
-    padding:0 20px;
+body.dark {
+  background: #1e1e2f;
+  color: #e9d7f7;
 }
 
-.section{
-    padding:40px;
-    max-width:1000px;
-    margin:auto;
+body.dark header h1 {
+  color: #ff9bcf;
 }
 
-.section h2{
-    margin-bottom:20px;
+body.dark .toggle {
+  background-color: #bb86fc;
+  color: #1e1e2f;
 }
 
-/* =========================
-   GRID
-========================= */
-
-.grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:16px;
+body.dark .toggle:hover,
+body.dark .toggle:focus {
+  background-color: #9c6dfd;
+  color: white;
 }
 
-/* =========================
-   CARDS
-========================= */
-
-.card{
-    background:var(--card);
-    padding:16px;
-    border-radius:16px;
-    box-shadow:var(--shadow);
-
-    transition:0.2s;
+body.dark button {
+  background-color: #bb86fc;
+  color: #1e1e2f;
 }
 
-.card:hover{
-    transform:translateY(-3px);
-}
-
-/* tags */
-.tag{
-    font-size:12px;
-    padding:4px 10px;
-    border-radius:999px;
-
-    background:var(--soft);
-    display:inline-block;
-    margin-bottom:8px;
-}
-
-/* =========================
-   TYPOGRAPHY HELPERS
-========================= */
-
-.small{
-    opacity:0.7;
-    font-size:14px;
-}
-
-.big{
-    font-size:28px;
-    font-weight:bold;
-    color:var(--primary);
-}
-
-.subtitle{
-    opacity:0.7;
-    margin-top:6px;
-}
-
-/* =========================
-   PROFILE COMPONENTS
-========================= */
-
-.profile-card{
-    background:var(--card);
-    padding:20px;
-    border-radius:16px;
-    box-shadow:var(--shadow);
-    margin-bottom:16px;
-}
-
-.avatar{
-    width:90px;
-    height:90px;
-    border-radius:50%;
-    background:var(--soft);
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    font-size:40px;
-    margin-bottom:10px;
-}
-
-/* =========================
-   HERO
-========================= */
-
-.hero{
-    padding:80px 20px;
-    text-align:center;
-}
-
-.hero h1{
-    font-size:52px;
-    margin-bottom:10px;
-}
-
-.hero p{
-    max-width:600px;
-    margin:auto;
-    opacity:0.8;
-}
-
-/* =========================
-   FOOTER
-========================= */
-
-footer{
-    text-align:center;
-    padding:40px;
-    opacity:0.6;
-}
-
-/* =========================
-   RESPONSIVE FIX
-========================= */
-
-@media (max-width: 600px){
-
-    header{
-        padding:18px 16px;
-        flex-direction:column;
-        gap:10px;
-        text-align:center;
-    }
-
-    .hero h1{
-        font-size:38px;
-    }
+body.dark button:hover,
+body.dark button:focus {
+  background-color: #9c6dfd;
+  color: white;
 }
