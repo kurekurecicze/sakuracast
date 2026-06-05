@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sakura Cast - Voice Acting Community</title>
-    <!-- Stabilní verze Tailwind CSS, která funguje v každém prohlížeči -->
+    <!-- Stabilní a spolehlivá verze Tailwind CSS v3 -->
     <script src="https://tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -34,7 +34,7 @@
                 <a href="https://discord.com" target="_blank" class="text-sm font-semibold text-gray-600 hover:text-[#F3A3B4] flex items-center gap-1 transition-colors">
                     💬 Náš Discord
                 </a>
-                <button onclick="alert('Zde bude v budoucnu napojeno přihlášení přes Supabase database!')" class="bg-[#FFB7C5] hover:bg-[#F3A3B4] text-white px-5 py-2 rounded-full font-medium shadow-sm transition-all cursor-pointer">
+                <button onclick="alert('Zde bude v budoucnu napojeno přihlášení přes Supabase!')" class="bg-[#FFB7C5] hover:bg-[#F3A3B4] text-white px-5 py-2 rounded-full font-medium shadow-sm transition-all cursor-pointer">
                     Přihlásit se / Registrace
                 </button>
             </nav>
@@ -65,8 +65,8 @@
                 <input type="text" placeholder="Hledat podle hlasu či role..." class="bg-white border border-gray-200 rounded-xl px-4 py-2 text-sm focus:outline-none focus:border-[#FFB7C5] w-full sm:w-64 shadow-sm">
             </div>
 
-            <!-- Karty s projekty -->
-            <div class="grid md:grid-cols-2 gap-6">
+            <!-- Karty s projekty (Mřížka vedle sebe) -->
+            <div class="grid md:grid-cols-2 gap-6 text-left">
                 
                 <!-- Ukázková karta 1 -->
                 <div class="bg-white border border-pink-50 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all">
@@ -115,8 +115,8 @@
 
         <!-- SEKCE 2: FORMULÁŘ PRO REŽISÉRY (Skrytý na začátku) -->
         <section id="section-post" class="mt-12 hidden max-w-xl mx-auto bg-white border border-pink-50 rounded-2xl p-8 shadow-sm">
-            <h3 class="text-2xl font-bold mb-2">Vytvořit nový casting</h3>
-            <p class="text-gray-500 text-sm mb-6">Zadej detaily o svém projektu a najdi ten pravý hlas.</p>
+            <h3 class="text-2xl font-bold mb-2 text-left">Vytvořit nový casting</h3>
+            <p class="text-gray-500 text-sm mb-6 text-left">Zadej detaily o svém projektu a najdi ten pravý hlas.</p>
             
             <form onsubmit="alert('Projekt odeslán! (Zatím pouze ukázkově)'); event.preventDefault(); showSection('browse');" class="space-y-4 text-left">
                 <div>
@@ -156,7 +156,7 @@
     <div id="audition-modal" class="fixed inset-0 bg-black/40 flex items-center justify-center z-50 hidden px-4">
         <div class="bg-white border border-pink-50 rounded-2xl p-6 max-w-md w-full shadow-xl text-left">
             <h3 class="text-xl font-bold mb-1">Odeslat konkurz</h3>
-            <p id="modal-project-name" class="text-xs bg-pink-50 text-[#F3A3B4] font-semibold inline-block px-2.5 py-1 rounded-md mb-4"></p>
+            <p id="modal-project-name" class="text-xs bg-pink-50 text-[#F3A3B4] font-semibold inline-block px-2.5 py-1 rounded-sm mb-4"></p>
             
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">Tvoje Jméno / Přezdívka</label>
@@ -183,7 +183,7 @@
         <p>&copy; 2026 Sakura Cast. Všechna práva vyhrazena. | Běží na GitHub Pages</p>
     </footer>
 
-    <!-- INTERAKTIVNÍ SKRIPT -->
+    <!-- SKRIPT PRO FUNKČNOST STRÁNEK -->
     <script>
         function showSection(section) {
             const browse = document.getElementById('section-browse');
