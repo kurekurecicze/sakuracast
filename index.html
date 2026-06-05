@@ -1,91 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SakuraCast</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SakuraCast</title>
 
-    <style>
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-            font-family:Arial, sans-serif;
-        }
+<style>
+    :root{
+        --bg:#fff7fb;
+        --card:#ffffff;
+        --text:#2b2b2b;
+        --pink:#e889b5;
+        --soft:#f3b6cc;
+    }
 
-        body{
-            background:#fff8fb;
-            color:#333;
-        }
+    body.dark{
+        --bg:#17121f;
+        --card:#241b2e;
+        --text:#f5f5f5;
+        --pink:#f4a6c1;
+        --soft:#3a2a44;
+    }
 
-        header{
-            background:white;
-            padding:20px 60px;
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
-            box-shadow:0 2px 10px rgba(0,0,0,.08);
-        }
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        font-family:Arial, sans-serif;
+    }
 
-        .logo{
-            font-size:28px;
-            font-weight:bold;
-            color:#e889b5;
-        }
+    body{
+        background:var(--bg);
+        color:var(--text);
+        transition:0.3s;
+    }
 
-        nav a{
-            margin-left:20px;
-            text-decoration:none;
-            color:#444;
-            font-weight:600;
-        }
+    header{
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        padding:18px 40px;
+        background:var(--card);
+        box-shadow:0 2px 12px rgba(0,0,0,0.08);
+        position:sticky;
+        top:0;
+    }
 
-        .hero{
-            text-align:center;
-            padding:120px 20px;
-        }
+    .logo{
+        font-size:24px;
+        font-weight:bold;
+        color:var(--pink);
+    }
 
-        .hero h1{
-            font-size:56px;
-            margin-bottom:20px;
-        }
+    nav a{
+        margin:0 12px;
+        text-decoration:none;
+        color:var(--text);
+        font-weight:600;
+        font-size:14px;
+    }
 
-        .hero p{
-            font-size:20px;
-            max-width:700px;
-            margin:auto;
-            color:#666;
-        }
+    .toggle{
+        cursor:pointer;
+        border:none;
+        padding:8px 12px;
+        border-radius:8px;
+        background:var(--soft);
+        color:var(--text);
+    }
 
-        .buttons{
-            margin-top:40px;
-        }
+    .hero{
+        padding:80px 20px;
+        text-align:center;
+    }
 
-        .btn{
-            display:inline-block;
-            padding:14px 28px;
-            margin:10px;
-            border-radius:999px;
-            text-decoration:none;
-            font-weight:bold;
-        }
+    .hero h1{
+        font-size:52px;
+        margin-bottom:10px;
+    }
 
-        .primary{
-            background:#e889b5;
-            color:white;
-        }
+    .hero p{
+        max-width:600px;
+        margin:auto;
+        opacity:0.8;
+    }
 
-        .secondary{
-            border:2px solid #e889b5;
-            color:#e889b5;
-        }
+    .btns{
+        margin-top:25px;
+    }
 
-        footer{
-            text-align:center;
-            padding:40px;
-            color:#777;
-        }
-    </style>
+    .btn{
+        display:inline-block;
+        padding:12px 20px;
+        margin:6px;
+        border-radius:999px;
+        text-decoration:none;
+        font-weight:bold;
+    }
+
+    .primary{
+        background:var(--pink);
+        color:white;
+    }
+
+    .secondary{
+        border:2px solid var(--pink);
+        color:var(--pink);
+    }
+
+    .section{
+        padding:40px;
+        max-width:1000px;
+        margin:auto;
+    }
+
+    .section h2{
+        margin-bottom:20px;
+    }
+
+    .grid{
+        display:grid;
+        grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+        gap:16px;
+    }
+
+    .card{
+        background:var(--card);
+        padding:16px;
+        border-radius:16px;
+        box-shadow:0 6px 20px rgba(0,0,0,0.08);
+        transition:0.2s;
+    }
+
+    .card:hover{
+        transform:translateY(-3px);
+    }
+
+    .tag{
+        font-size:12px;
+        padding:4px 10px;
+        border-radius:999px;
+        background:var(--soft);
+        display:inline-block;
+        margin-bottom:8px;
+    }
+
+    footer{
+        text-align:center;
+        padding:40px;
+        opacity:0.6;
+    }
+</style>
 </head>
 
 <body>
@@ -96,29 +161,83 @@
     <nav>
         <a href="#">Projects</a>
         <a href="#">Talent Search</a>
-        <a href="#">Pricing</a>
-        <a href="#">Login</a>
+        <a href="#">Dashboard</a>
     </nav>
+
+    <button class="toggle" onclick="toggleTheme()">🌙</button>
 </header>
 
 <section class="hero">
     <h1>Find Your Voice.</h1>
-
     <p>
-        SakuraCast is a platform connecting voice actors,
-        directors and creators through casting calls,
-        auditions and professional networking.
+        A modern casting platform for voice actors and directors.
+        Create projects, submit auditions, and discover talent worldwide.
     </p>
 
-    <div class="buttons">
-        <a class="btn primary" href="#">Join as Voice Actor</a>
-        <a class="btn secondary" href="#">Create Project</a>
+    <div class="btns">
+        <a class="btn primary" href="#">Browse Projects</a>
+        <a class="btn secondary" href="#">Join as Voice Actor</a>
+    </div>
+</section>
+
+<section class="section">
+    <h2>🔥 Latest Casting Calls</h2>
+
+    <div class="grid">
+
+        <div class="card">
+            <div class="tag">Game</div>
+            <h3>Fantasy RPG - Main Hero</h3>
+            <p>Looking for a young male heroic voice.</p>
+        </div>
+
+        <div class="card">
+            <div class="tag">Anime</div>
+            <h3>Sakura Spirits</h3>
+            <p>Soft female voice with emotional range.</p>
+        </div>
+
+        <div class="card">
+            <div class="tag">Commercial</div>
+            <h3>Tech Ad Voiceover</h3>
+            <p>Confident corporate tone required.</p>
+        </div>
+
+    </div>
+</section>
+
+<section class="section">
+    <h2>🌸 Featured Voice Actors</h2>
+
+    <div class="grid">
+
+        <div class="card">
+            <h3>Yuki VA</h3>
+            <p>Japanese / English • Soft Anime Voices</p>
+        </div>
+
+        <div class="card">
+            <h3>Max Stone</h3>
+            <p>Deep male voice • Game characters</p>
+        </div>
+
+        <div class="card">
+            <h3>Luna Rose</h3>
+            <p>Versatile female voice • Commercials</p>
+        </div>
+
     </div>
 </section>
 
 <footer>
-    © 2026 SakuraCast
+    © 2026 SakuraCast • Built with 🌸
 </footer>
+
+<script>
+function toggleTheme(){
+    document.body.classList.toggle("dark");
+}
+</script>
 
 </body>
 </html>
