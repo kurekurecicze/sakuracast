@@ -8,11 +8,9 @@ function toggleTheme(){
     }
 }
 
-// 🌸 aplikace theme HNED při načtení
+// 🌸 apply BEFORE render stabilně
 (function(){
-    const theme = localStorage.getItem("theme");
-
-    if(theme === "dark"){
-        document.documentElement.classList.add("dark");
+    if(localStorage.getItem("theme") === "dark"){
+        document.body.classList.add("dark");
     }
 })();
