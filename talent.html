@@ -5,20 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>SakuraCast - Talent</title>
 
-<!-- 🌸 GLOBAL STYLE -->
 <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
 <header>
-    <div><a href="index.html">🌸 SakuraCast</a></div>
+    <div class="logo">🌸 SakuraCast</div>
 
-    <div>
+    <nav>
         <a href="projects.html">Projects</a>
-    </div>
+    </nav>
 
-    <!-- 🌙 DARK MODE -->
     <button class="toggle" onclick="toggleTheme()">🌙</button>
 </header>
 
@@ -26,24 +24,31 @@
 
     <h1>Talent Search</h1>
 
-    <div class="card">
-        <a href="profile.html"><h3>Yuki VA</h3></a>
-        <p>Japanese / English • Anime voices</p>
-    </div>
+    <p class="subtitle">
+        Discover voice actors from around the world and find the perfect voice for your project.
+    </p>
 
-    <div class="card">
-        <a href="profile.html"><h3>Max Stone</h3></a>
-        <p>Deep male voice • Games</p>
-    </div>
+    <div class="grid">
 
-    <div class="card">
-        <a href="profile.html"><h3>Luna Rose</h3></a>
-        <p>Commercial / soft voice</p>
+        <a href="profile.html" class="card" style="text-decoration:none; color:inherit;">
+            <h3>Yuki VA</h3>
+            <p>Japanese / English • Anime voices</p>
+        </a>
+
+        <a href="profile.html" class="card" style="text-decoration:none; color:inherit;">
+            <h3>Max Stone</h3>
+            <p>Deep male voice • Games</p>
+        </a>
+
+        <a href="profile.html" class="card" style="text-decoration:none; color:inherit;">
+            <h3>Luna Rose</h3>
+            <p>Commercial / soft voice</p>
+        </a>
+
     </div>
 
 </div>
 
-<!-- 🌸 GLOBAL SCRIPT -->
 <script src="script.js"></script>
 
 </body>
