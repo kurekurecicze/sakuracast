@@ -5,20 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>SakuraCast - Profile</title>
 
-<!-- 🌸 GLOBAL STYLE -->
 <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
 <header>
-    <div><a href="index.html">🌸 SakuraCast</a></div>
+    <div class="logo">🌸 SakuraCast</div>
 
-    <div>
+    <nav>
         <a href="talent.html">Back to Talent</a>
-    </div>
+    </nav>
 
-    <!-- 🌙 DARK MODE -->
     <button class="toggle" onclick="toggleTheme()">🌙</button>
 </header>
 
@@ -29,7 +27,10 @@
         <div class="avatar">🌸</div>
 
         <h1>Yuki VA</h1>
-        <p>Voice Actor • Anime / Games / Emotional roles</p>
+
+        <p class="subtitle">
+            Voice Actor • Anime / Games / Emotional roles
+        </p>
 
         <div>
             <span class="tag">Japanese</span>
@@ -38,11 +39,17 @@
             <span class="tag">Teen / Young Adult</span>
         </div>
 
-        <button onclick="contact()">Contact Voice Actor</button>
+        <div style="margin-top:12px;">
+            <button class="btn primary" onclick="contact()">
+                Contact Voice Actor
+            </button>
+        </div>
+
     </div>
 
     <div class="profile-card">
         <h2>🎧 Demo Reel</h2>
+
         <p>▶ Fantasy Character Voice</p>
         <p>▶ Emotional Scene Sample</p>
         <p>▶ Commercial Voice Sample</p>
@@ -50,6 +57,7 @@
 
     <div class="profile-card">
         <h2>📊 Stats</h2>
+
         <p>Auditions submitted: 24</p>
         <p>Shortlisted: 6</p>
         <p>Accepted roles: 2</p>
@@ -57,14 +65,12 @@
 
 </div>
 
-<!-- 🌸 CONTACT SCRIPT (only profile-specific logic) -->
 <script>
 function contact(){
     alert("Message sent (demo version) 🌸");
 }
 </script>
 
-<!-- 🌸 GLOBAL SCRIPT -->
 <script src="script.js"></script>
 
 </body>
