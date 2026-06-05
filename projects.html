@@ -5,6 +5,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>SakuraCast - Projects</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Malé doplnění stylů pro filtr */
+    .filters {
+      background: white;
+      padding: 20px;
+      margin-bottom: 30px;
+      border-radius: 16px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .filters h4 {
+      margin-top: 0;
+      color: #ff4d6d;
+      margin-bottom: 12px;
+    }
+
+    .filter-group {
+      margin-bottom: 20px;
+    }
+
+    .filter-group label {
+      display: block;
+      margin-bottom: 6px;
+      cursor: pointer;
+    }
+
+    .filter-group input[type="checkbox"] {
+      margin-right: 8px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
 
@@ -20,31 +51,138 @@
 
 <main class="container">
   <h1>Browse Projects</h1>
-  <p class="subtitle">
-    Discover casting calls from studios, indie developers, and creators worldwide.
-  </p>
 
-  <div class="grid">
-    <a href="project.html" class="card" style="text-decoration:none; color:inherit;">
-      <div class="tag">Game</div>
-      <h2>Fantasy RPG - Hero Role</h2>
-      <p>Looking for strong heroic male voice.</p>
-    </a>
+  <section class="filters">
 
-    <a href="project.html" class="card" style="text-decoration:none; color:inherit;">
-      <div class="tag">Anime</div>
-      <h2>Sakura Spirits</h2>
-      <p>Soft emotional female voice needed.</p>
-    </a>
+    <div class="filter-group">
+      <h4>Project Type</h4>
+      <label><input type="checkbox" name="projectType" value="Game"> Game</label>
+      <label><input type="checkbox" name="projectType" value="Anime"> Anime</label>
+      <label><input type="checkbox" name="projectType" value="Commercial"> Commercial</label>
+      <label><input type="checkbox" name="projectType" value="Audiobook"> Audiobook</label>
+      <label><input type="checkbox" name="projectType" value="Animation"> Animation</label>
+      <label><input type="checkbox" name="projectType" value="Podcast"> Podcast</label>
+      <label><input type="checkbox" name="projectType" value="Other"> Other</label>
+    </div>
 
-    <a href="project.html" class="card" style="text-decoration:none; color:inherit;">
-      <div class="tag">Commercial</div>
-      <h2>Tech Product Voiceover</h2>
-      <p>Confident professional tone.</p>
-    </a>
-  </div>
+    <div class="filter-group">
+      <h4>Voice Type - Gender</h4>
+      <label><input type="checkbox" name="voiceGender" value="Male"> Male</label>
+      <label><input type="checkbox" name="voiceGender" value="Female"> Female</label>
+      <label><input type="checkbox" name="voiceGender" value="Non-binary"> Non-binary</label>
+    </div>
+
+    <div class="filter-group">
+      <h4>Accent / Dialect</h4>
+      <strong>Europe</strong><br />
+      <label><input type="checkbox" name="accent" value="British English"> British English</label>
+      <label><input type="checkbox" name="accent" value="German"> German</label>
+      <label><input type="checkbox" name="accent" value="Russian"> Russian</label>
+      <label><input type="checkbox" name="accent" value="Czech"> Czech</label>
+      <label><input type="checkbox" name="accent" value="French"> French</label>
+      <label><input type="checkbox" name="accent" value="Spanish (Spain)"> Spanish (Spain)</label>
+      <br />
+      <strong>North America</strong><br />
+      <label><input type="checkbox" name="accent" value="American English"> American English</label>
+      <label><input type="checkbox" name="accent" value="Canadian English"> Canadian English</label>
+      <label><input type="checkbox" name="accent" value="Mexican Spanish"> Mexican Spanish</label>
+    </div>
+
+    <div class="filter-group">
+      <h4>Audio Length</h4>
+      <label><input type="checkbox" name="audioLength" value="Short"> Short (up to 1 min)</label>
+      <label><input type="checkbox" name="audioLength" value="Medium"> Medium (up to 5 min)</label>
+      <label><input type="checkbox" name="audioLength" value="Long"> Long (5+ min)</label>
+    </div>
+
+    <button id="clear-filters" class="btn secondary">Clear Filters</button>
+
+  </section>
+
+  <section>
+    <div class="grid" id="projects-list">
+
+      <div class="card" data-projecttype="Game" data-gender="Male" data-accent="American English" data-audiolength="Medium">
+        <div class="tag">Game</div>
+        <h2>Fantasy RPG - Hero Role</h2>
+        <p>Looking for strong heroic male voice with American English accent.</p>
+      </div>
+
+      <div class="card" data-projecttype="Anime" data-gender="Female" data-accent="Japanese" data-audiolength="Short">
+        <div class="tag">Anime</div>
+        <h2>Sakura Spirits</h2>
+        <p>Soft emotional female voice needed, Japanese accent preferred.</p>
+      </div>
+
+      <div class="card" data-projecttype="Commercial" data-gender="Female" data-accent="British English" data-audiolength="Short">
+        <div class="tag">Commercial</div>
+        <h2>Tech Product Voiceover</h2>
+        <p>Confident female voice with British English accent.</p>
+      </div>
+
+      <div class="card" data-projecttype="Podcast" data-gender="Non-binary" data-accent="Czech" data-audiolength="Long">
+        <div class="tag">Podcast</div>
+        <h2>International Talk</h2>
+        <p>Non-binary speaker with Czech accent for podcast series.</p>
+      </div>
+
+    </div>
+  </section>
+
 </main>
 
+<footer>
+  <p>© 2024 SakuraCast • Built with 🌸</p>
+</footer>
+
 <script src="script.js"></script>
+<script>
+// Jednoduché filtrování karet projektů podle zaškrtnutých filtrů
+
+function filterProjects() {
+  const projects = document.querySelectorAll('#projects-list .card');
+
+  // Sběr zaškrtnutých hodnot každého filtru
+  function getCheckedValues(name) {
+    return Array.from(document.querySelectorAll(`input[name="${name}"]:checked`)).map(i => i.value);
+  }
+
+  const selectedProjectTypes = getCheckedValues('projectType');
+  const selectedGenders = getCheckedValues('voiceGender');
+  const selectedAccents = getCheckedValues('accent');
+  const selectedLengths = getCheckedValues('audioLength');
+
+  projects.forEach(card => {
+    const projectType = card.getAttribute('data-projecttype');
+    const gender = card.getAttribute('data-gender');
+    const accent = card.getAttribute('data-accent');
+    const length = card.getAttribute('data-audiolength');
+
+    const matchesProjectType = selectedProjectTypes.length === 0 || selectedProjectTypes.includes(projectType);
+    const matchesGender = selectedGenders.length === 0 || selectedGenders.includes(gender);
+    const matchesAccent = selectedAccents.length === 0 || selectedAccents.includes(accent);
+    const matchesLength = selectedLengths.length === 0 || selectedLengths.includes(length);
+
+    if (matchesProjectType && matchesGender && matchesAccent && matchesLength) {
+      card.style.display = '';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+
+document.querySelectorAll('.filters input[type="checkbox"]').forEach(input => {
+  input.addEventListener('change', filterProjects);
+});
+
+document.getElementById('clear-filters').addEventListener('click', () => {
+  document.querySelectorAll('.filters input[type="checkbox"]').forEach(i => i.checked = false);
+  filterProjects();
+});
+
+// Inicialní filtrování (např. po načtení stránky)
+filterProjects();
+</script>
+
 </body>
 </html>
