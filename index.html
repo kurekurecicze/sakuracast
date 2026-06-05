@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sakura Cast - Voice Acting Community</title>
+    <!-- Tailwind CSS pro moderní vzhled -->
+    <script src="https://jsdelivr.net"></script>
+    <style>
+        :root {
+            --bg-sakura: #FFF8F8;
+            --primary-sakura: #FFB7C5;
+            --hover-sakura: #F3A3B4;
+            --text-dark: #2C2526;
+        }
+        body {
+            background-color: var(--bg-sakura);
+            color: var(--text-dark);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- NAVIGAČNÍ LIŠTA -->
+    <header class="bg-white border-b border-pink-100 shadow-xs sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <span class="text-2xl">🌸</span>
+                <h1 class="text-2xl font-bold tracking-tight text-[#2C2526]">Sakura<span class="text-[#F3A3B4]">Cast</span></h1>
+            </div>
+            <nav class="flex items-center gap-6">
+                <a href="https://discord.com" target="_blank" class="text-sm font-semibold text-gray-600 hover:text-[#F3A3B4] flex items-center gap-1 transition-colors">
+                    <span>💬</span> Náš Discord
+                </a>
+                <button onclick="alert('Zde bude v budoucnu napojeno přihlášení přes Supabase database!')" class="bg-[#FFB7C5] hover:bg-[#F3A3B4] text-white px-5 py-2 rounded-full font-medium shadow-xs transition-all cursor-pointer">
+                    Přihlásit se / Registrace
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HLAVNÍ OBSAH -->
+    <main class="max-w-6xl mx-auto px-4 py-8 flex-1 w-full">
+        
+        <!-- UVÍTÁNÍ A TLAČÍTKA -->
+        <div class="text-center my-8">
+            <h2 class="text-4xl font-extrabold mb-3">Vítej v komunitě hlasových herců</h2>
+            <p class="text-gray-600 max-w-xl mx-auto mb-6">Procházej aktivní projekty, posílej své nahrávky nebo najdi perfektní hlas pro svůj projekt.</p>
+            <div class="flex justify-center gap-4">
+                <button onclick="showSection('browse')" class="bg-white border border-[#FFB7C5] text-[#2C2526] hover:bg-pink-50 px-6 py-3 rounded-xl font-semibold shadow-xs transition-all cursor-pointer">
+                    🔍 Prohlížet castingy
+                </button>
+                <button onclick="showSection('post')" class="bg-[#FFB7C5] hover:bg-[#F3A3B4] text-white px-6 py-3 rounded-xl font-semibold shadow-md transition-all cursor-pointer">
+                    ➕ Přidat nový projekt
+                </button>
+            </div>
+        </div>
+
+        <!-- SEKCE 1: PROHLÍŽENÍ CASTINGŮ -->
+        <section id="section-browse" class="mt-12">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold">Aktivní castingy</h3>
+                <input type="text" placeholder="Hledat podle hlasu či role..." class="bg-white border border-gray-200 rounded-xl px-4 py-2 text-sm focus:outline-hidden focus:border-[#FFB7C5] w-64 shadow-xs">
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Karta 1 -->
+                <div class="bg-white border border-pink-50 rounded-2xl p-6 shadow-xs hover:shadow-md transition-all">
+                    <div class="flex justify-between items-start mb-3">
+                        <div>
+                            <span class="text-xs bg-pink-100 text-pink-700 font-bold px-2.5 py-1 rounded-sm uppercase tracking-wide">Animovaný film</span>
+                            <h4 class="text-xl font-bold mt-1">Legenda o lišce</h4>
+                        </div>
+                        <span class="text-xs text-gray-400">Uzávěrka: 25. 6.</span>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-4">Hledáme dabéra pro hlavní roli mladého bojovníka. Postava je energická, odvážná a občas trochu drzá.</p>
+                    <div class="border-t border-gray-100 pt-4 flex justify-between items-center">
+                        <div>
+                            <p class="text-xs text-gray-400">Hlasové požadavky:</p>
+                            <p class="text-sm font-semibold text-gray-700">Mužský (Tenor / Střední)</p>
+                        </div>
+                        <button onclick="openAuditionModal('Legenda o lišce')" class="bg-[#FFB7C5] hover:bg-[#F3A3B4] text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors cursor-pointer">
+                            Poslat konkurz
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Karta 2 -->
+                <div class="bg-white border border-pink-50 rounded-2xl p-6 shadow-xs hover:shadow-md transition-all">
+                    <div class="flex justify-between items-start mb-3">
+                        <div>
+                            <span class="text-xs bg-purple-100 text-purple-700 font-bold px-2.5 py-1 rounded-sm uppercase tracking-wide">Videohra</span>
+                            <h4 class="text-xl font-bold mt-1">Cyber Arena 2026</h4>
+                        </div>
+                        <span class="text-xs text-gray-400">Uzávěrka: 18. 6.</span>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-4">Pro sci-fi RPG hru hledáme hlas umělé inteligence. Hlas by měl znít klidně, ale mírně chladně.</p>
+                    <div class="border-t border-gray-100 pt-4 flex justify-between items-center">
+                        <div>
+                            <p class="text-xs text-gray-400">Hlasové požadavky:</p>
+                            <p class="text-sm font-semibold text-gray-700">Ženský (Soprán / Hlubší)</p>
+                        </div>
+                        <button onclick="openAuditionModal('Cyber Arena')" class="bg-[#FFB7C5] hover:bg-[#F3A3B4] text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors cursor-pointer">
+                            Poslat konkurz
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEKCE 2: FORMULÁŘ PRO REŽISÉRY (Skrytý) -->
+        <section id="section-post" class="mt-12 hidden max-w-xl mx-auto bg-white border border-pink-50 rounded-2xl p-8 shadow-sm">
+            <h3 class="text-2xl font-bold mb-2">Vytvořit nový casting</h3>
+            <p class="text-gray-500 text-sm mb-6">Zadej detaily o svém projektu a najdi ten pravý hlas.</p>
+            <form onsubmit="alert('Projekt odeslán! (Ukázka)'); event.preventDefault(); showSection('browse');" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Název projektu</label>
+                    <input type="text" required placeholder="Např. Audiokniha" class="w-full bg-white border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-hidden focus:border-[#FFB7C5]">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Popis postavy</label>
+                    <textarea required rows="3" class="w-full bg-white border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-hidden focus:border-[#FFB7C5]"></textarea>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Hlas</label>
+                        <select class="w-full bg-white border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-hidden focus:border-[#FFB7C5]">
+                            <option>Mužský</option>
+                            <option>Ženský</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Uzávěrka</label>
+                        <input type="date" required class="w-full bg-white border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-hidden focus:border-[#FFB7C5]">
+                    </div>
+                </div>
+                <div class="pt-2 flex gap-3">
+                    <button type="button" onclick="showSection('browse')" class="w-1/2 border border-gray-200 text-gray-600 py-2.5 rounded-xl font-medium">Zrušit</button>
+                    <button type="submit" class="w-1/2 bg-[#FFB7C5] hover:bg-[#F3A3B4] text-white py-2.5 rounded-xl font-medium">Zveřejnit</button>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <!-- ODKAZ NA SCRIPT -->
+    <script src="script.js"></script>
+</body>
+</html>
