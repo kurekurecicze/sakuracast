@@ -65,15 +65,15 @@
         const supabaseUrl = 'https://gzkjxixyhvgdhpdwvwca.supabase.co';
         const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd6a2p4aXh5aHZnZGhwZHd2d2NhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA2NzYxNDUsImV4cCI6MjA5NjI1MjE0NX0.C6scPHXhKujfEZN-oiLgGuIK__mctfZeMxLPVtnBET8';
         
-        // Sjednocený název bez jakýchkoliv podtržítek či velkých písmen v proměnné
-        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+        // Přejmenováno na sbClient, aby nevznikal žádný konflikt s knihovnou Supabase
+        const sbClient = supabase.createClient(supabaseUrl, supabaseKey);
 
         // Načtení dat z databáze a zobrazení na webu
         async function fetchCastings() {
             const container = document.getElementById('castings-container');
             if (!container) return;
             
-            const { data, error } = await supabase.from('projects').select('*').order('created_at', { ascending: false });
+            const { data, error } = await sbClient.from('projects').select('*').order('created_at', { ascending: false });
             
             if (error) {
                 container.innerHTML = `<p style="color: red; padding: 1rem;">Chyba při načítání dat: ${error.message}</p>`;
@@ -105,7 +105,7 @@
             const description = document.getElementById('form-desc').value;
             const voice = document.getElementById('form-voice').value;
 
-            const { error } = await supabase.from('projects').insert([{ title, description, voice_requirement: voice }]);
+            const { error } = await sbClient.from('projects').insert([{ title, description, voice_requirement: voice }]);
 
             if (error) { 
                 alert('Chyba při odesílání: ' + error.message); 
@@ -146,3 +146,4 @@
     </script>
 </body>
 </html>
+
