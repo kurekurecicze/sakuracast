@@ -1,5 +1,3 @@
-// 🌸 SakuraCast Global Script
-
 function toggleTheme(){
     document.body.classList.toggle("dark");
 
@@ -10,9 +8,11 @@ function toggleTheme(){
     }
 }
 
-// načtení uloženého theme
-window.onload = function(){
-    if(localStorage.getItem("theme") === "dark"){
-        document.body.classList.add("dark");
+// 🌸 aplikace theme HNED při načtení
+(function(){
+    const theme = localStorage.getItem("theme");
+
+    if(theme === "dark"){
+        document.documentElement.classList.add("dark");
     }
-}
+})();
