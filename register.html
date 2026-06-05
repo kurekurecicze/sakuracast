@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SakuraCast - Register</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header>
+  <div class="logo"><a href="index.html" style="text-decoration:none; color:inherit;">🌸 SakuraCast</a></div>
+  <button class="toggle" aria-label="Toggle Dark/Light Mode">🌙</button>
+</header>
+
+<main class="container">
+  <h1>Create Your Account</h1>
+  <form id="register-form">
+    <label for="username">Username</label><br />
+    <input type="text" id="username" name="username" required /><br /><br />
+
+    <label for="email">Email</label><br />
+    <input type="email" id="email" name="email" required /><br /><br />
+
+    <label for="password">Password</label><br />
+    <input type="password" id="password" name="password" required /><br /><br />
+
+    <button type="submit" class="btn primary">Register</button>
+  </form>
+
+  <p style="margin-top:20px;">
+    Already have an account? <a href="login.html">Login here</a>.
+  </p>
+</main>
+
+<script>
+document.getElementById('register-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  alert('Registration successful! (demo version)');
+  window.location.href = 'login.html';
+});
+</script>
+
+<script src="script.js"></script>
+</body>
+</html>
