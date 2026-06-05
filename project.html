@@ -1,66 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>SakuraCast - Project</title>
-
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SakuraCast - Project</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
 
 <header>
-    <div class="logo">🌸 SakuraCast</div>
+  <div class="logo"><a href="index.html" style="text-decoration:none; color:inherit;">🌸 SakuraCast</a></div>
 
-    <nav>
-        <a href="projects.html">Back to Projects</a>
-    </nav>
+  <nav>
+    <a href="projects.html">Back to Projects</a>
+  </nav>
 
-    <button class="toggle" onclick="toggleTheme()">🌙</button>
+  <button class="toggle" aria-label="Toggle Dark/Light Mode">🌙</button>
 </header>
 
-<div class="container">
+<main class="container">
 
-    <h1>🌸 Sakura Spirits</h1>
+  <h1>🌸 Sakura Spirits</h1>
+  <p class="subtitle">
+    Anime fantasy project about spirits of cherry blossoms and emotional storytelling.
+  </p>
 
-    <p class="subtitle">
-        Anime fantasy project about spirits of cherry blossoms and emotional storytelling.
-    </p>
+  <div class="card">
+    <div class="tag">Role</div>
+    <h2>Yumi - Main Character</h2>
+    <p>Soft emotional female voice, age 16–20.</p>
+    <button class="btn primary" onclick="apply('Yumi')">Apply for this role</button>
+  </div>
 
-    <div class="card">
-        <div class="tag">Role</div>
+  <div class="card">
+    <div class="tag">Role</div>
+    <h2>Guardian Spirit</h2>
+    <p>Deep calm male voice, mystical tone.</p>
+    <button class="btn primary" onclick="apply('Guardian Spirit')">Apply for this role</button>
+  </div>
 
-        <h2>Yumi - Main Character</h2>
-
-        <p>Soft emotional female voice, age 16–20.</p>
-
-        <button class="btn primary" onclick="apply('Yumi')">
-            Apply for this role
-        </button>
-    </div>
-
-    <div class="card">
-        <div class="tag">Role</div>
-
-        <h2>Guardian Spirit</h2>
-
-        <p>Deep calm male voice, mystical tone.</p>
-
-        <button class="btn primary" onclick="apply('Guardian Spirit')">
-            Apply for this role
-        </button>
-    </div>
-
-</div>
+</main>
 
 <script>
 function apply(role){
-    alert("Audition submitted for role: " + role + " 🌸 (demo version)");
+  alert("Audition submitted for role: " + role + " 🌸 (demo version)");
 }
 </script>
 
 <script src="script.js"></script>
-
 </body>
 </html>
