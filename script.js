@@ -1,3 +1,4 @@
+// 🌸 SakuraCast Theme Toggle
 function toggleTheme(){
     document.body.classList.toggle("dark");
 
@@ -8,9 +9,12 @@ function toggleTheme(){
     }
 }
 
-// 🌸 apply BEFORE render stabilně
+// 🌙 NO FLASH INIT (runs IMMEDIATELY)
 (function(){
-    if(localStorage.getItem("theme") === "dark"){
+    const theme = localStorage.getItem("theme");
+
+    if(theme === "dark"){
         document.body.classList.add("dark");
+        document.documentElement.classList.add("dark");
     }
 })();
