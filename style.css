@@ -69,7 +69,7 @@ nav a:hover {
 }
 
 /* =========================
-   HLAVNÍ OBSAH
+   HLAVNÍ OBSAH + KONTEJNERY
 ========================= */
 
 main, .container {
@@ -83,6 +83,7 @@ main, .container {
   margin-bottom: 16px;
 }
 
+/* Hero sekce na index.html */
 .hero {
   text-align: center;
   margin-bottom: 40px;
@@ -105,6 +106,7 @@ main, .container {
   margin: 0 12px;
 }
 
+/* Tlačítka */
 button {
   background-color: #ff8fab;
   border: none;
@@ -123,6 +125,14 @@ button:focus {
   outline: none;
 }
 
+/* Tlačítka uvnitř karet */
+.btn.primary {
+  padding: 12px 20px;
+  border-radius: 999px;
+  font-weight: bold;
+  display: inline-block;
+}
+
 /* Karty */
 .card {
   background-color: white;
@@ -137,7 +147,7 @@ button:focus {
   transform: translateY(-5px);
 }
 
-/* Grid layou pro přehledy */
+/* Grid layouty */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -145,7 +155,7 @@ button:focus {
   margin-bottom: 40px;
 }
 
-/* Pro speciální části dashboard*/
+/* Pro speciální části dashboard a profilu */
 .stat {
   font-size: 2.5rem;
   font-weight: 700;
@@ -161,12 +171,36 @@ button:focus {
   color: #8b3d4a;
   display: inline-block;
   margin-bottom: 8px;
+  margin-right: 6px;
 }
 
-/* =========================
-   PATIČKA
-========================= */
+/* Profile card */
+.profile-card {
+  background: white;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  margin-bottom: 24px;
+}
 
+.avatar {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: #ffb6c1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  margin-bottom: 12px;
+}
+
+.subtitle {
+  opacity: 0.7;
+  margin: 8px 0 16px;
+}
+
+/* Footer */
 footer {
   margin-top: 50px;
   text-align: center;
@@ -226,4 +260,14 @@ body.dark .card {
 body.dark .tag {
   background-color: #3a2a44;
   color: #d8b7e8;
+}
+
+body.dark .profile-card {
+  background-color: #241b2e;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+}
+
+body.dark .avatar {
+  background-color: #7c4d7d;
+  color: #f1d7ff;
 }
