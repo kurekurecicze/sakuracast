@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sakura Cast - Voice Acting Community</title>
     <!-- Stabilní a spolehlivá verze Tailwind CSS v3 -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cnd.tailwindcss.com"></script>
     <script>
         tailwind.config = {
+            darkMode: 'class', // Zapíná přepínání tmavého režimu pomocí třídy
             theme: {
                 extend: {
                     colors: {
@@ -15,27 +16,34 @@
                         sakuraPrimary: '#FFB7C5',
                         sakuraHover: '#F3A3B4',
                         sakuraText: '#2C2526',
+                        darkBg: '#1E222B',      // Tmavě šedé pozadí webu
+                        darkCard: '#272C38',    // Trochu světlejší šedá pro karty
                     }
                 }
             }
         }
     </script>
 </head>
-<body class="bg-[#FFF8F8] text-[#2C2526] min-h-screen flex flex-col font-sans">
+<body class="bg-sakuraBg dark:bg-darkBg text-sakuraText dark:text-gray-100 min-h-screen flex flex-col font-sans transition-colors duration-200">
 
     <!-- NAVIGAČNÍ LIŠTA -->
-    <header class="bg-white border-b border-pink-100 shadow-sm sticky top-0 z-50">
+    <header class="bg-white dark:bg-darkCard border-b border-pink-100 dark:border-gray-800 shadow-sm sticky top-0 z-50 transition-colors duration-200">
         <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
             <div class="flex items-center gap-2">
                 <span class="text-2xl">🌸</span>
-                <h1 class="text-2xl font-bold tracking-tight text-[#2C2526]">Sakura<span class="text-[#F3A3B4]">Cast</span></h1>
+                <h1 class="text-2xl font-bold tracking-tight text-[#2C2526] dark:text-white">Sakura<span class="text-[#F3A3B4]">Cast</span></h1>
             </div>
-            <nav class="flex items-center gap-6">
-                <a href="https://discord.com" target="_blank" class="text-sm font-semibold text-gray-600 hover:text-[#F3A3B4] flex items-center gap-1 transition-colors">
+            <nav class="flex items-center gap-4 sm:gap-6">
+                <!-- TLAČÍTKO PRO PŘEPÍNÁNÍ REŽIMU -->
+                <button onclick="toggleDarkMode()" class="p-2 rounded-xl bg-gray-100 dark:bg-gray-700 text-xl hover:bg-gray-200 dark:hover:bg-gray-600 transition-all cursor-pointer" title="Přepnout tmavý/světlý režim">
+                    <span id="theme-icon">🌙</span>
+                </button>
+                
+                <a href="https://discord.com" target="_blank" class="text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-[#F3A3B4] flex items-center gap-1 transition-colors">
                     💬 Náš Discord
                 </a>
-                <button onclick="alert('Zde bude v budoucnu napojeno přihlášení přes Supabase!')" class="bg-[#FFB7C5] hover:bg-[#F3A3B4] text-white px-5 py-2 rounded-full font-medium shadow-sm transition-all cursor-pointer">
-                    Přihlásit se / Registrace
+                <button onclick="alert('Zde bude v budoucnu napojeno přihlášení přes Supabase!')" class="bg-[#FFB7C5] hover:bg-[#F3A3B4] text-white px-5 py-2 rounded-full font-medium shadow-sm transition-all cursor-pointer text-sm sm:text-base">
+                    Přihlásit se
                 </button>
             </nav>
         </div>
@@ -46,10 +54,10 @@
         
         <!-- UVÍTÁNÍ A TLAČÍTKA -->
         <div class="text-center my-8">
-            <h2 class="text-4xl font-extrabold mb-3 text-[#2C2526]">Vítej v komunitě hlasových herců</h2>
-            <p class="text-gray-600 max-w-xl mx-auto mb-6">Procházej aktivní projekty, posílej své nahrávky nebo najdi perfektní hlas pro svůj projekt.</p>
+            <h2 class="text-4xl font-extrabold mb-3 text-[#2C2526] dark:text-white">Vítej v komunitě hlasových herců</h2>
+            <p class="text-gray-600 dark:text-gray-300 max-w-xl mx-auto mb-6">Procházej aktivní projekty, posílej své nahrávky nebo najdi perfektní hlas pro svůj projekt.</p>
             <div class="flex justify-center gap-4">
-                <button onclick="showSection('browse')" class="bg-white border border-[#FFB7C5] text-[#2C2526] hover:bg-pink-50 px-6 py-3 rounded-xl font-semibold shadow-sm transition-all cursor-pointer">
+                <button onclick="showSection('browse')" class="bg-white dark:bg-darkCard border border-[#FFB7C5] text-[#2C2526] dark:text-white hover:bg-pink-50 dark:hover:bg-gray-800 px-6 py-3 rounded-xl font-semibold shadow-sm transition-all cursor-pointer">
                     🔍 Prohlížet castingy
                 </button>
                 <button onclick="showSection('post')" class="bg-[#FFB7C5] hover:bg-[#F3A3B4] text-white px-6 py-3 rounded-xl font-semibold shadow-md transition-all cursor-pointer">
@@ -62,26 +70,26 @@
         <section id="section-browse" class="mt-12">
             <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
                 <h3 class="text-2xl font-bold">Aktivní castingy</h3>
-                <input type="text" placeholder="Hledat podle hlasu či role..." class="bg-white border border-gray-200 rounded-xl px-4 py-2 text-sm focus:outline-none focus:border-[#FFB7C5] w-full sm:w-64 shadow-sm">
+                <input type="text" placeholder="Hledat podle hlasu či role..." class="bg-white dark:bg-darkCard border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-2 text-sm focus:outline-none focus:border-[#FFB7C5] dark:focus:border-[#FFB7C5] w-full sm:w-64 shadow-sm text-[#2C2526] dark:text-white">
             </div>
 
-            <!-- Karty s projekty (Mřížka vedle sebe) -->
+            <!-- Karty s projekty -->
             <div class="grid md:grid-cols-2 gap-6 text-left">
                 
                 <!-- Ukázková karta 1 -->
-                <div class="bg-white border border-pink-50 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all">
+                <div class="bg-white dark:bg-darkCard border border-pink-50 dark:border-gray-800 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all">
                     <div class="flex justify-between items-start mb-3">
                         <div>
-                            <span class="text-xs bg-pink-100 text-pink-700 font-bold px-2.5 py-1 rounded-md uppercase tracking-wide">Animovaný film</span>
+                            <span class="text-xs bg-pink-100 dark:bg-pink-900/30 text-pink-700 dark:text-pink-300 font-bold px-2.5 py-1 rounded-md uppercase tracking-wide">Animovaný film</span>
                             <h4 class="text-xl font-bold mt-1">Legenda o lišce</h4>
                         </div>
                         <span class="text-xs text-gray-400">Uzávěrka: 25. 6.</span>
                     </div>
-                    <p class="text-sm text-gray-600 mb-4">Hledáme dabéra pro hlavní roli mladého bojovníka. Postava je energická, odvážná a občas trochu drzá.</p>
-                    <div class="border-t border-gray-100 pt-4 flex justify-between items-center">
+                    <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">Hledáme dabéra pro hlavní roli mladého bojovníka. Postava je energická, odvážná a občas trochu drzá.</p>
+                    <div class="border-t border-gray-100 dark:border-gray-700 pt-4 flex justify-between items-center">
                         <div>
                             <p class="text-xs text-gray-400">Hlasové požadavky:</p>
-                            <p class="text-sm font-semibold text-gray-700">Mužský (Tenor / Střední)</p>
+                            <p class="text-sm font-semibold text-gray-700 dark:text-gray-200">Mužský (Tenor / Střední)</p>
                         </div>
                         <button onclick="openAuditionModal('Legenda o lišce - Mladý bojovník')" class="bg-[#FFB7C5] hover:bg-[#F3A3B4] text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors cursor-pointer">
                             Poslat konkurz
@@ -90,19 +98,19 @@
                 </div>
 
                 <!-- Ukázková karta 2 -->
-                <div class="bg-white border border-pink-50 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all">
+                <div class="bg-white dark:bg-darkCard border border-pink-50 dark:border-gray-800 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all">
                     <div class="flex justify-between items-start mb-3">
                         <div>
-                            <span class="text-xs bg-purple-100 text-purple-700 font-bold px-2.5 py-1 rounded-md uppercase tracking-wide">Videohra</span>
+                            <span class="text-xs bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 font-bold px-2.5 py-1 rounded-md uppercase tracking-wide">Videohra</span>
                             <h4 class="text-xl font-bold mt-1">Cyber Arena 2026</h4>
                         </div>
                         <span class="text-xs text-gray-400">Uzávěrka: 18. 6.</span>
                     </div>
-                    <p class="text-sm text-gray-600 mb-4">Pro sci-fi RPG hru hledáme hlas umělé inteligence (AI průvodce). Hlas by měl znít klidně, ale mírně chladně.</p>
-                    <div class="border-t border-gray-100 pt-4 flex justify-between items-center">
+                    <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">Pro sci-fi RPG hru hledáme hlas umělé inteligence (AI průvodce). Hlas by měl znít klidně, ale mírně chladně.</p>
+                    <div class="border-t border-gray-100 dark:border-gray-700 pt-4 flex justify-between items-center">
                         <div>
                             <p class="text-xs text-gray-400">Hlasové požadavky:</p>
-                            <p class="text-sm font-semibold text-gray-700">Ženský (Soprán / Hlubší)</p>
+                            <p class="text-sm font-semibold text-gray-700 dark:text-gray-200">Ženský (Soprán / Hlubší)</p>
                         </div>
                         <button onclick="openAuditionModal('Cyber Arena - Hlas AI')" class="bg-[#FFB7C5] hover:bg-[#F3A3B4] text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors cursor-pointer">
                             Poslat konkurz
@@ -113,65 +121,42 @@
             </div>
         </section>
 
-        <!-- SEKCE 2: FORMULÁŘ PRO REŽISÉRY (Skrytý na začátku) -->
-        <section id="section-post" class="mt-12 hidden max-w-xl mx-auto bg-white border border-pink-50 rounded-2xl p-8 shadow-sm">
+        <!-- SEKCE 2: FORMULÁŘ PRO REŽISÉRY -->
+        <section id="section-post" class="mt-12 hidden max-w-xl mx-auto bg-white dark:bg-darkCard border border-pink-50 dark:border-gray-800 rounded-2xl p-8 shadow-sm">
             <h3 class="text-2xl font-bold mb-2 text-left">Vytvořit nový casting</h3>
-            <p class="text-gray-500 text-sm mb-6 text-left">Zadej detaily o svém projektu a najdi ten pravý hlas.</p>
+            <p class="text-gray-500 dark:text-gray-400 text-sm mb-6 text-left">Zadej detaily o svém projektu a najdi ten pravý hlas.</p>
             
             <form onsubmit="alert('Projekt odeslán! (Zatím pouze ukázkově)'); event.preventDefault(); showSection('browse');" class="space-y-4 text-left">
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Název projektu</label>
-                    <input type="text" required placeholder="Např. Audiokniha - Sherlock Holmes" class="w-full bg-white border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:border-[#FFB7C5]">
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Název projektu</label>
+                    <input type="text" required placeholder="Např. Audiokniha - Sherlock Holmes" class="w-full bg-white dark:bg-darkBg border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-2.5 focus:outline-none focus:border-[#FFB7C5] text-[#2C2526] dark:text-white">
                 </div>
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Popis postavy a projektu</label>
-                    <textarea required rows="3" placeholder="Popište, o čem projekt je a jaká je role..." class="w-full bg-white border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:border-[#FFB7C5]"></textarea>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Popis postavy a projektu</label>
+                    <textarea required rows="3" placeholder="Popište, o čem projekt je a jaká je role..." class="w-full bg-white dark:bg-darkBg border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-2.5 focus:outline-none focus:border-[#FFB7C5] text-[#2C2526] dark:text-white"></textarea>
                 </div>
                 <div class="grid grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Hlasový rozsah</label>
-                        <select class="w-full bg-white border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:border-[#FFB7C5]">
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Hlasový rozsah</label>
+                        <select class="w-full bg-white dark:bg-darkBg border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-2.5 focus:outline-none focus:border-[#FFB7C5] text-[#2C2526] dark:text-white">
                             <option>Mužský (Bass)</option>
                             <option>Mužský (Tenor)</option>
                             <option>Ženský (Soprán)</option>
-                            <option>Ženský (Alt)</option>
-                            <option>Nezáleží / Jiný</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Uzávěrka</label>
-                        <input type="date" required class="w-full bg-white border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:border-[#FFB7C5]">
-                    </div>
-                </div>
-                <div class="pt-2 flex gap-3">
-                    <button type="button" onclick="showSection('browse')" class="w-1/2 border border-gray-200 text-gray-600 py-2.5 rounded-xl font-medium cursor-pointer">Zrušit</button>
-                    <button type="submit" class="w-1/2 bg-[#FFB7C5] hover:bg-[#F3A3B4] text-white py-2.5 rounded-xl font-medium transition-colors cursor-pointer">Zveřejnit projekt</button>
-                </div>
-            </form>
-        </section>
-
-    </main>
-
-    <!-- MODÁLNÍ OKNO PRO ODESLÁNÍ AUDICE (Vyskakovací okno) -->
-    <div id="audition-modal" class="fixed inset-0 bg-black/40 flex items-center justify-center z-50 hidden px-4">
-        <div class="bg-white border border-pink-50 rounded-2xl p-6 max-w-md w-full shadow-xl text-left">
-            <h3 class="text-xl font-bold mb-1">Odeslat konkurz</h3>
-            <p id="modal-project-name" class="text-xs bg-pink-50 text-[#F3A3B4] font-semibold inline-block px-2.5 py-1 rounded-sm mb-4"></p>
-            
+            <form onsubmit="alert('Tvůj konkurz byl úspěšně odeslán režisérovi! (Ukázka)'); closeAuditionModal(); event.preventDefault();" class="space-y-4">
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Tvoje Jméno / Přezdívka</label>
-                    <input type="text" required class="w-full bg-white border border-gray-200 rounded-xl px-4 py-2 focus:outline-none focus:border-[#FFB7C5]">
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Tvoje Jméno / Přezdívka</label>
+                    <input type="text" required class="w-full bg-white dark:bg-darkBg border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-2 focus:outline-none focus:border-[#FFB7C5] text-[#2C2526] dark:text-white">
                 </div>
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">E-mail</label>
-                    <input type="email" required class="w-full bg-white border border-gray-200 rounded-xl px-4 py-2 focus:outline-none focus:border-[#FFB7C5]">
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">E-mail</label>
+                    <input type="email" required class="w-full bg-white dark:bg-darkBg border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-2 focus:outline-none focus:border-[#FFB7C5] text-[#2C2526] dark:text-white">
                 </div>
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Nahrávka konkurzu (MP3 soubor)</label>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Nahrávka konkurzu (MP3 soubor)</label>
                     <input type="file" accept="audio/mp3, audio/*" required class="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-pink-50 file:text-[#F3A3B4] hover:file:bg-pink-100 cursor-pointer">
                 </div>
                 <div class="flex gap-3 pt-2">
-                    <button type="button" onclick="closeAuditionModal()" class="w-1/2 border border-gray-200 text-gray-600 py-2 rounded-xl text-sm font-medium cursor-pointer">Zavřít</button>
+                    <button type="button" onclick="closeAuditionModal()" class="w-1/2 border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 py-2 rounded-xl text-sm font-medium cursor-pointer">Zavřít</button>
                     <button type="submit" class="w-1/2 bg-[#FFB7C5] hover:bg-[#F3A3B4] text-white py-2 rounded-xl text-sm font-medium transition-colors cursor-pointer">Odeslat audio</button>
                 </div>
             </form>
@@ -179,12 +164,13 @@
     </div>
 
     <!-- PATIČKA STRÁNKY -->
-    <footer class="bg-white border-t border-pink-100 py-6 mt-12 text-center text-xs text-gray-400">
+    <footer class="bg-white dark:bg-darkCard border-t border-pink-100 dark:border-gray-800 py-6 mt-12 text-center text-xs text-gray-400 transition-colors duration-200">
         <p>&copy; 2026 Sakura Cast. Všechna práva vyhrazena. | Běží na GitHub Pages</p>
     </footer>
 
-    <!-- SKRIPT PRO FUNKČNOST STRÁNEK -->
+    <!-- INTERAKTIVNÍ SKRIPTY -->
     <script>
+        // Funkce pro přepínání sekcí na webu (Zobrazení castingů / Vytvoření projektu)
         function showSection(section) {
             const browse = document.getElementById('section-browse');
             const post = document.getElementById('section-post');
@@ -198,6 +184,7 @@
             }
         }
 
+        // Ovládání vyskakovacího okna pro konkurzy
         function openAuditionModal(projectName) {
             document.getElementById('modal-project-name').innerText = "Pozice: " + projectName;
             document.getElementById('audition-modal').classList.remove('hidden');
@@ -205,6 +192,33 @@
 
         function closeAuditionModal() {
             document.getElementById('audition-modal').classList.add('hidden');
+        }
+
+        // --- KÓD PRO TMÁVÝ REŽIM (DARK MODE) ---
+        
+        // Zkontroluje při načtení stránky, jestli už uživatel měl režim zapnutý
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            document.getElementById('theme-icon').innerText = '☀️';
+        } else {
+            document.documentElement.classList.remove('dark');
+            document.getElementById('theme-icon').innerText = '🌙';
+        }
+
+        // Hlavní funkce pro samotné přepínání režimu tlačítkem
+        function toggleDarkMode() {
+            const html = document.documentElement;
+            const icon = document.getElementById('theme-icon');
+            
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                icon.innerText = '🌙';
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.classList.add('dark');
+                icon.innerText = '☀️';
+                localStorage.setItem('theme', 'dark');
+            }
         }
     </script>
 </body>
