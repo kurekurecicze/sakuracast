@@ -61,29 +61,33 @@
 
     <!-- JS SKRIPTY PRO PROPOJENÍ S DATABÁZÍ -->
     <script>
-        // TADY DOSAĎ SVÉ POŽADOVANÉ ÚDAJE Z POZNÁMKOVÉHO BLOKU:
+        // Tvoje přihlašovací údaje
         const supabaseUrl = 'https://gzkjxixyhvgdhpdwvwca.supabase.co';
         const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd6a2p4aXh5aHZnZGhwZHd2d2NhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA2NzYxNDUsImV4cCI6MjA5NjI1MjE0NX0.C6scPHXhKujfEZN-oiLgGuIK__mctfZeMxLPVtnBET8';
-        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+        
+        // SPRÁVNÉ POJMENOVÁNÍ KLIENTA (Bez konfliktu jmen)
+        const supabaseClient = Supabase.createClient(supabaseUrl, supabaseKey);
 
         // Načtení dat z databáze a zobrazení na webu
         async function fetchCastings() {
             const container = document.getElementById('castings-container');
-            const { data, error } = await _supabase.from('projects').select('*').order('created_at', { ascending: false });
+            if (!container) return;
+            
+            const { data, error } = await supabaseClient.from('projects').select('*').order('created_at', { ascending: false });
             
             if (error) {
-                container.innerHTML = `<p style="color: red;">Chyba při načítání dat: ${error.message}</p>`;
+                container.innerHTML = `<p style="color: red; padding: 1rem;">Chyba při načítání dat: ${error.message}</p>`;
                 return;
             }
             if (!data || data.length === 0) {
-                container.innerHTML = `<p style="color: var(--gray-600);">Zatím nebyly přidány žádné castingy.</p>`;
+                container.innerHTML = `<p style="color: var(--gray-600); padding: 1rem;">Zatím nebyly přidány žádné castingy.</p>`;
                 return;
             }
             
             container.innerHTML = '';
             data.forEach(project => {
                 container.innerHTML += `
-                    <div class="card">
+                    <div class="card" style="background: var(--card-light); margin-bottom: 1rem;">
                         <h4 style="font-size: 1.25rem; font-weight: 700; margin: 0 0 0.5rem 0;">${project.title}</h4>
                         <p style="font-size: 0.875rem; color: var(--gray-600); margin-bottom: 1rem;">${project.description}</p>
                         <div style="display: flex; justify-content: space-between; items-center; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 1rem;">
@@ -101,10 +105,11 @@
             const description = document.getElementById('form-desc').value;
             const voice = document.getElementById('form-voice').value;
 
-            const { error } = await _supabase.from('projects').insert([{ title, description, voice_requirement: voice }]);
+            const { error } = await supabaseClient.from('projects').insert([{ title, description, voice_requirement: voice }]);
 
-            if (error) { alert('Chyba při odesílání: ' + error.message); } 
-            else {
+            if (error) { 
+                alert('Chyba při odesílání: ' + error.message); 
+            } else {
                 alert('Projekt úspěšně zapsán do databáze!');
                 document.getElementById('project-form').reset();
                 showSection('browse');
@@ -115,13 +120,30 @@
         // Spuštění načítání dat při otevření webu
         fetchCastings();
 
-        function showSection(sec) { document.getElementById('section-browse').classList.toggle('hidden', sec!=='browse'); document.getElementById('section-post').classList.toggle('hidden', sec!=='post'); }
-        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) { document.documentElement.classList.add('dark'); document.getElementById('theme-icon').innerText = '☀️'; }
+        function showSection(sec) { 
+            document.getElementById('section-browse').classList.toggle('hidden', sec!=='browse'); 
+            document.getElementById('section-post').classList.toggle('hidden', sec!=='post'); 
+        }
+        
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) { 
+            document.documentElement.classList.add('dark'); 
+            document.getElementById('theme-icon').innerText = '☀️'; 
+        }
+        
         function toggleDarkMode() {
-            const html = document.documentElement; const icon = document.getElementById('theme-icon');
-            if (html.classList.contains('dark')) { html.classList.remove('dark'); icon.innerText = '🌙'; localStorage.setItem('theme', 'light'); }
-            else { html.classList.add('dark'); icon.innerText = '☀️'; localStorage.setItem('theme', 'dark'); }
+            const html = document.documentElement; 
+            const icon = document.getElementById('theme-icon');
+            if (html.classList.contains('dark')) { 
+                html.classList.remove('dark'); 
+                icon.innerText = '🌙'; 
+                localStorage.setItem('theme', 'light'); 
+            } else { 
+                html.classList.add('dark'); 
+                icon.innerText = '☀️'; 
+                localStorage.setItem('theme', 'dark'); 
+            }
         }
     </script>
 </body>
 </html>
+
