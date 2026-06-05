@@ -1,4 +1,4 @@
-/* 🌸 SakuraCast Global Style (Final Clean System) */
+/* 🌸 SakuraCast Global Style (Final Stable Build) */
 
 /* =========================
    THEME VARIABLES
@@ -38,14 +38,14 @@ body.dark{
     font-family:Arial, sans-serif;
 }
 
-/* 🌙 prevent flash */
-html,
-body{
+/* 🌙 prevent flash + proper theming */
+html{
     background:var(--bg);
-    color:var(--text);
 }
 
 body{
+    background:var(--bg);
+    color:var(--text);
     transition:background 0.25s ease, color 0.25s ease;
 }
 
@@ -67,6 +67,7 @@ header{
     z-index:100;
 }
 
+/* nav links */
 header a{
     text-decoration:none;
     color:var(--text);
@@ -81,7 +82,7 @@ header a:hover{
     color:var(--primary);
 }
 
-/* logo variant */
+/* logo */
 .logo{
     font-size:24px;
     font-weight:bold;
@@ -194,10 +195,15 @@ header a:hover{
 }
 
 /* =========================
-   DASHBOARD STATS
+   TYPOGRAPHY HELPERS
 ========================= */
 
-.stat{
+.small{
+    opacity:0.7;
+    font-size:14px;
+}
+
+.big{
     font-size:28px;
     font-weight:bold;
     color:var(--primary);
@@ -209,7 +215,7 @@ header a:hover{
 }
 
 /* =========================
-   PROFILE
+   PROFILE COMPONENTS
 ========================= */
 
 .profile-card{
@@ -265,11 +271,19 @@ footer{
 }
 
 /* =========================
-   ANIMATIONS
+   RESPONSIVE FIX
 ========================= */
 
-@keyframes float{
-    0%{ transform:translateY(0px); }
-    50%{ transform:translateY(-4px); }
-    100%{ transform:translateY(0px); }
+@media (max-width: 600px){
+
+    header{
+        padding:18px 16px;
+        flex-direction:column;
+        gap:10px;
+        text-align:center;
+    }
+
+    .hero h1{
+        font-size:38px;
+    }
 }
