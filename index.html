@@ -64,7 +64,7 @@
         // TADY DOSAĎ SVÉ POŽADOVANÉ ÚDAJE Z POZNÁMKOVÉHO BLOKU:
         const supabaseUrl = 'https://gzkjxixyhvgdhpdwvwca.supabase.co';
         const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd6a2p4aXh5aHZnZGhwZHd2d2NhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA2NzYxNDUsImV4cCI6MjA5NjI1MjE0NX0.C6scPHXhKujfEZN-oiLgGuIK__mctfZeMxLPVtnBET8';
-        const _supabase = supabase.createClient(supabaseUrl, supabaseKey);
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
 
         // Načtení dat z databáze a zobrazení na webu
         async function fetchCastings() {
