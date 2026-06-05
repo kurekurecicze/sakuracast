@@ -1,73 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>SakuraCast - Dashboard</title>
-
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SakuraCast - Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
 
 <header>
-    <div><a href="index.html">🌸 SakuraCast</a></div>
+  <div><a href="index.html" class="logo">🌸 SakuraCast</a></div>
 
-    <div>
-        <a href="projects.html">Projects</a> |
-        <a href="talent.html">Talent</a> |
-        <a href="profile.html">Profile</a>
-    </div>
+  <nav>
+    <a href="projects.html">Projects</a>
+    <a href="talent.html">Talent</a>
+    <a href="profile.html">Profile</a>
+  </nav>
 
-    <button class="toggle" onclick="toggleTheme()">🌙</button>
+  <button class="toggle" aria-label="Toggle Dark/Light Mode">🌙</button>
 </header>
 
-<div class="container">
+<main class="container">
+  <h1>Welcome back, Yuki 🌸</h1>
+  <p class="subtitle">Here is your activity overview</p>
 
-    <h1>Welcome back, Yuki 🌸</h1>
-    <p class="subtitle">Here is your activity overview</p>
-
-    <div class="grid">
-
-        <div class="card">
-            <div class="stat">12</div>
-            <p>Auditions sent</p>
-        </div>
-
-        <div class="card">
-            <div class="stat">3</div>
-            <p>Shortlisted roles</p>
-        </div>
-
-        <div class="card">
-            <div class="stat">1</div>
-            <p>Accepted roles</p>
-        </div>
-
-        <div class="card">
-            <div class="stat">28</div>
-            <p>Profile views</p>
-        </div>
-
-    </div>
-
-    <h2 style="margin-top:40px;">🎧 Recent Auditions</h2>
-
+  <section class="grid">
     <div class="card">
-        <span class="tag">Pending</span>
-        <h3>Sakura Spirits - Yumi</h3>
-        <p>Status: Waiting for review</p>
+      <div class="stat">12</div>
+      <p>Auditions sent</p>
     </div>
 
     <div class="card">
-        <span class="tag">Shortlisted</span>
-        <h3>Fantasy RPG - Hero</h3>
-        <p>You made it to the final round</p>
+      <div class="stat">3</div>
+      <p>Shortlisted roles</p>
     </div>
 
-</div>
+    <div class="card">
+      <div class="stat">1</div>
+      <p>Accepted roles</p>
+    </div>
+
+    <div class="card">
+      <div class="stat">28</div>
+      <p>Profile views</p>
+    </div>
+  </section>
+
+  <h2 style="margin-top:40px;">🎧 Recent Auditions</h2>
+
+  <div class="card">
+    <span class="tag">Pending</span>
+    <h3>Sakura Spirits - Yumi</h3>
+    <p>Status: Waiting for review</p>
+  </div>
+
+  <div class="card">
+    <span class="tag">Shortlisted</span>
+    <h3>Fantasy RPG - Hero</h3>
+    <p>You made it to the final round</p>
+  </div>
+</main>
 
 <script src="script.js"></script>
-
 </body>
 </html>
