@@ -5,152 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>SakuraCast</title>
 
-<style>
-    :root{
-        --bg:#fff7fb;
-        --card:#ffffff;
-        --text:#2b2b2b;
-        --pink:#e889b5;
-        --soft:#f3b6cc;
-    }
-
-    body.dark{
-        --bg:#17121f;
-        --card:#241b2e;
-        --text:#f5f5f5;
-        --pink:#f4a6c1;
-        --soft:#3a2a44;
-    }
-
-    *{
-        margin:0;
-        padding:0;
-        box-sizing:border-box;
-        font-family:Arial, sans-serif;
-    }
-
-    body{
-        background:var(--bg);
-        color:var(--text);
-        transition:0.3s;
-    }
-
-    header{
-        display:flex;
-        justify-content:space-between;
-        align-items:center;
-        padding:18px 40px;
-        background:var(--card);
-        box-shadow:0 2px 12px rgba(0,0,0,0.08);
-        position:sticky;
-        top:0;
-    }
-
-    .logo{
-        font-size:24px;
-        font-weight:bold;
-        color:var(--pink);
-    }
-
-    nav a{
-        margin:0 12px;
-        text-decoration:none;
-        color:var(--text);
-        font-weight:600;
-        font-size:14px;
-    }
-
-    .toggle{
-        cursor:pointer;
-        border:none;
-        padding:8px 12px;
-        border-radius:8px;
-        background:var(--soft);
-        color:var(--text);
-    }
-
-    .hero{
-        padding:80px 20px;
-        text-align:center;
-    }
-
-    .hero h1{
-        font-size:52px;
-        margin-bottom:10px;
-    }
-
-    .hero p{
-        max-width:600px;
-        margin:auto;
-        opacity:0.8;
-    }
-
-    .btns{
-        margin-top:25px;
-    }
-
-    .btn{
-        display:inline-block;
-        padding:12px 20px;
-        margin:6px;
-        border-radius:999px;
-        text-decoration:none;
-        font-weight:bold;
-    }
-
-    .primary{
-        background:var(--pink);
-        color:white;
-    }
-
-    .secondary{
-        border:2px solid var(--pink);
-        color:var(--pink);
-    }
-
-    .section{
-        padding:40px;
-        max-width:1000px;
-        margin:auto;
-    }
-
-    .section h2{
-        margin-bottom:20px;
-    }
-
-    .grid{
-        display:grid;
-        grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-        gap:16px;
-    }
-
-    .card{
-        background:var(--card);
-        padding:16px;
-        border-radius:16px;
-        box-shadow:0 6px 20px rgba(0,0,0,0.08);
-        transition:0.2s;
-    }
-
-    .card:hover{
-        transform:translateY(-3px);
-    }
-
-    .tag{
-        font-size:12px;
-        padding:4px 10px;
-        border-radius:999px;
-        background:var(--soft);
-        display:inline-block;
-        margin-bottom:8px;
-    }
-
-    footer{
-        text-align:center;
-        padding:40px;
-        opacity:0.6;
-    }
-</style>
+<!-- 🌸 GLOBAL STYLE -->
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -158,25 +14,27 @@
 <header>
     <div class="logo">🌸 SakuraCast</div>
 
-<nav>
-    <a href="projects.html">Projects</a>
-    <a href="talent.html">Talent Search</a>
-    <a href="dashboard.html">Dashboard</a>
-</nav>
+    <nav>
+        <a href="projects.html">Projects</a>
+        <a href="talent.html">Talent Search</a>
+        <a href="dashboard.html">Dashboard</a>
+    </nav>
 
+    <!-- 🌙 DARK MODE -->
     <button class="toggle" onclick="toggleTheme()">🌙</button>
 </header>
 
 <section class="hero">
     <h1>Find Your Voice.</h1>
+
     <p>
         A modern casting platform for voice actors and directors.
         Create projects, submit auditions, and discover talent worldwide.
     </p>
 
     <div class="btns">
-        <a class="btn primary" href="#">Browse Projects</a>
-        <a class="btn secondary" href="#">Join as Voice Actor</a>
+        <a class="btn primary" href="projects.html">Browse Projects</a>
+        <a class="btn secondary" href="talent.html">Join as Voice Actor</a>
     </div>
 </section>
 
@@ -233,25 +91,8 @@
     © 2026 SakuraCast • Built with 🌸
 </footer>
 
-<script>
-function toggleTheme(){
-    document.body.classList.toggle("dark");
-
-    // uloží stav
-    if(document.body.classList.contains("dark")){
-        localStorage.setItem("theme","dark");
-    } else {
-        localStorage.setItem("theme","light");
-    }
-}
-
-// při načtení stránky
-window.onload = function(){
-    if(localStorage.getItem("theme") === "dark"){
-        document.body.classList.add("dark");
-    }
-}
-</script>
+<!-- 🌸 GLOBAL SCRIPT -->
+<script src="script.js"></script>
 
 </body>
 </html>
