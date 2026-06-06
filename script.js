@@ -25,14 +25,14 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// Dynamické načtení filtru z filters.html a jeho inicializace
+// Dynamické načtení filtru a inicializace interakce
 document.addEventListener('DOMContentLoaded', () => {
   const container = document.getElementById('filter-container');
   if(!container) return;
 
   fetch('filters.html')
     .then(response => {
-      if (!response.ok) throw new Error('Network response was not ok');
+      if (!response.ok) throw new Error('Failed to load filters.html');
       return response.text();
     })
     .then(html => {
@@ -40,11 +40,11 @@ document.addEventListener('DOMContentLoaded', () => {
       initFilters();
     })
     .catch(error => {
-      console.error('There was a problem loading the filter:', error);
+      console.error('Error loading filter:', error);
     });
 });
 
-// Inicializace klikacích tlačítek ve filtru
+// Inicilizace tlačítek pro filtrování
 function initFilters() {
   const container = document.getElementById('filter-container');
   if(!container) return;
@@ -52,12 +52,8 @@ function initFilters() {
   container.querySelectorAll('.filters-tabbar .filter-buttons button').forEach(btn => {
     btn.addEventListener('click', () => {
       btn.classList.toggle('active');
-      if(document.getElementById('projects-list')){
-        filterItems('projects-list');
-      }
-      if(document.getElementById('talent-list')){
-        filterItems('talent-list');
-      }
+      filterItems('projects-list');
+      filterItems('talent-list');
     });
   });
 
@@ -65,17 +61,13 @@ function initFilters() {
   if(clearBtn){
     clearBtn.addEventListener('click', () => {
       container.querySelectorAll('.filters-tabbar .filter-buttons button.active').forEach(b => b.classList.remove('active'));
-      if(document.getElementById('projects-list')){
-        filterItems('projects-list');
-      }
-      if(document.getElementById('talent-list')){
-        filterItems('talent-list');
-      }
+      filterItems('projects-list');
+      filterItems('talent-list');
     });
   }
 }
 
-// Obecná filtrační funkce, která filtruje podle aktivních filtrů položky v seznamu
+// Filtrace položek podle aktivních filtrů
 function filterItems(listId) {
   const list = document.getElementById(listId);
   if(!list) return;
@@ -96,7 +88,7 @@ function filterItems(listId) {
       if(activeFilters[key].length === 0) continue;
 
       let dataAttr = key.toLowerCase();
-      if(key === 'voiceGender') dataAttr = 'gender';
+      if(key === 'voiceGender') dataAttr = 'gender';  // přizpůsobení datového atributu
 
       const val = item.getAttribute('data-' + dataAttr);
       if(!activeFilters[key].includes(val)){
