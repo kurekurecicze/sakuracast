@@ -23,7 +23,93 @@
 <main class="container">
   <h1>Browse Projects</h1>
 
-  <div id="filter-container"></div>
+  <!-- Statický filtr z filters.html -->
+  <section class="filters-tabbar">
+
+    <div class="filter-group">
+      <h4>Project Type</h4>
+      <div class="filter-buttons" data-filter-name="projectType">
+        <button type="button" data-filter-value="Game">Game</button>
+        <button type="button" data-filter-value="Anime">Anime</button>
+        <button type="button" data-filter-value="Commercial">Commercial</button>
+        <button type="button" data-filter-value="Audiobook">Audiobook</button>
+        <button type="button" data-filter-value="Animation">Animation</button>
+        <button type="button" data-filter-value="Podcast">Podcast</button>
+        <button type="button" data-filter-value="Other">Other</button>
+      </div>
+    </div>
+
+    <div class="filter-group">
+      <h4>Voice Gender</h4>
+      <div class="filter-buttons" data-filter-name="voiceGender">
+        <button type="button" data-filter-value="Male">Male</button>
+        <button type="button" data-filter-value="Female">Female</button>
+        <button type="button" data-filter-value="Non-binary">Non-binary</button>
+      </div>
+    </div>
+
+    <div class="filter-group">
+      <h4>Accent / Dialect</h4>
+      <div class="filter-buttons" data-filter-name="accent">
+        <button type="button" data-filter-value="British English">British English</button>
+        <button type="button" data-filter-value="German">German</button>
+        <button type="button" data-filter-value="Russian">Russian</button>
+        <button type="button" data-filter-value="Czech">Czech</button>
+        <button type="button" data-filter-value="French">French</button>
+        <button type="button" data-filter-value="Spanish (Spain)">Spanish</button>
+        <button type="button" data-filter-value="American English">American English</button>
+        <button type="button" data-filter-value="Canadian English">Canadian English</button>
+        <button type="button" data-filter-value="Mexican Spanish">Mexican Spanish</button>
+      </div>
+    </div>
+
+    <div class="filter-group">
+      <h4>Audio Length</h4>
+      <div class="filter-buttons" data-filter-name="audioLength">
+        <button type="button" data-filter-value="Short">Short</button>
+        <button type="button" data-filter-value="Medium">Medium</button>
+        <button type="button" data-filter-value="Long">Long</button>
+      </div>
+    </div>
+
+    <div class="filter-group">
+      <h4>Age Range</h4>
+      <div class="filter-buttons" data-filter-name="age">
+        <button type="button" data-filter-value="Child">Child</button>
+        <button type="button" data-filter-value="Teen">Teen</button>
+        <button type="button" data-filter-value="Young Adult">Young Adult</button>
+        <button type="button" data-filter-value="Adult">Adult</button>
+        <button type="button" data-filter-value="Middle-aged">Middle-aged</button>
+        <button type="button" data-filter-value="Senior">Senior</button>
+      </div>
+    </div>
+
+    <div class="filter-group">
+      <h4>Voice Style</h4>
+      <div class="filter-buttons" data-filter-name="style">
+        <button type="button" data-filter-value="Soft">Soft</button>
+        <button type="button" data-filter-value="Deep">Deep</button>
+        <button type="button" data-filter-value="Aggressive">Aggressive</button>
+        <button type="button" data-filter-value="Emotional">Emotional</button>
+        <button type="button" data-filter-value="Neutral">Neutral</button>
+        <button type="button" data-filter-value="Comic">Comic</button>
+        <button type="button" data-filter-value="Narration">Narration</button>
+      </div>
+    </div>
+
+    <div class="filter-group">
+      <h4>Availability</h4>
+      <div class="filter-buttons" data-filter-name="availability">
+        <button type="button" data-filter-value="Immediate">Immediate</button>
+        <button type="button" data-filter-value="Within a week">Within a week</button>
+        <button type="button" data-filter-value="Within a month">Within a month</button>
+        <button type="button" data-filter-value="Negotiable">Negotiable</button>
+      </div>
+    </div>
+
+    <button id="clear-filters" class="btn secondary">Clear Filters</button>
+
+  </section>
 
   <section class="grid" id="projects-list">
 
