@@ -23,7 +23,6 @@
 <main class="container">
   <h1>Talent Search</h1>
 
-  <!-- Statický filtr vložený přímo -->
   <section class="filters-tabbar">
 
     <div class="filter-group">
@@ -37,17 +36,49 @@
 
     <div class="filter-group">
       <h4>Accent / Dialect</h4>
-      <div class="filter-buttons" data-filter-name="accent">
-        <button type="button" data-filter-value="British English">British English</button>
-        <button type="button" data-filter-value="German">German</button>
-        <button type="button" data-filter-value="Russian">Russian</button>
-        <button type="button" data-filter-value="Czech">Czech</button>
-        <button type="button" data-filter-value="French">French</button>
-        <button type="button" data-filter-value="Spanish (Spain)">Spanish</button>
-        <button type="button" data-filter-value="American English">American English</button>
-        <button type="button" data-filter-value="Canadian English">Canadian English</button>
-        <button type="button" data-filter-value="Mexican Spanish">Mexican Spanish</button>
-      </div>
+      <details>
+        <summary>Europe</summary>
+        <div class="filter-buttons" data-filter-name="accent">
+          <button type="button" data-filter-value="British English">British English</button>
+          <button type="button" data-filter-value="German">German</button>
+          <button type="button" data-filter-value="Russian">Russian</button>
+          <button type="button" data-filter-value="Czech">Czech</button>
+          <button type="button" data-filter-value="French">French</button>
+          <button type="button" data-filter-value="Spanish (Spain)">Spanish (Spain)</button>
+          <button type="button" data-filter-value="Other Europe">Other</button>
+        </div>
+      </details>
+      <details>
+        <summary>North America</summary>
+        <div class="filter-buttons" data-filter-name="accent">
+          <button type="button" data-filter-value="American English">American English</button>
+          <button type="button" data-filter-value="Canadian English">Canadian English</button>
+          <button type="button" data-filter-value="Mexican Spanish">Mexican Spanish</button>
+          <button type="button" data-filter-value="Other North America">Other</button>
+        </div>
+      </details>
+      <details>
+        <summary>Asia</summary>
+        <div class="filter-buttons" data-filter-name="accent">
+          <button type="button" data-filter-value="Japanese">Japanese</button>
+          <button type="button" data-filter-value="Chinese">Chinese</button>
+          <button type="button" data-filter-value="Korean">Korean</button>
+          <button type="button" data-filter-value="Other Asia">Other</button>
+        </div>
+      </details>
+      <details>
+        <summary>Oceania</summary>
+        <div class="filter-buttons" data-filter-name="accent">
+          <button type="button" data-filter-value="Australian English">Australian English</button>
+          <button type="button" data-filter-value="Other Oceania">Other</button>
+        </div>
+      </details>
+      <details>
+        <summary>Other</summary>
+        <div class="filter-buttons" data-filter-name="accent">
+          <button type="button" data-filter-value="Other">Other</button>
+        </div>
+      </details>
     </div>
 
     <div class="filter-group">
@@ -72,17 +103,22 @@
         <button type="button" data-filter-value="Neutral">Neutral</button>
         <button type="button" data-filter-value="Comic">Comic</button>
         <button type="button" data-filter-value="Narration">Narration</button>
+        <button type="button" data-filter-value="Creature">Creature</button>
       </div>
     </div>
 
     <div class="filter-group">
-      <h4>Availability</h4>
-      <div class="filter-buttons" data-filter-name="availability">
-        <button type="button" data-filter-value="Immediate">Immediate</button>
-        <button type="button" data-filter-value="Within a week">Within a week</button>
-        <button type="button" data-filter-value="Within a month">Within a month</button>
-        <button type="button" data-filter-value="Negotiable">Negotiable</button>
+      <h4>Sort By</h4>
+      <div class="filter-buttons" data-filter-name="sort">
+        <button type="button" data-filter-value="newlyAdded">Newly Added</button>
+        <button type="button" data-filter-value="random">Random</button>
+        <button type="button" data-filter-value="nearDeadline">Near Deadline</button>
       </div>
+    </div>
+
+    <div class="filter-group">
+      <h4>Exclude Keywords</h4>
+      <input type="text" id="excludeKeywords" placeholder="Enter keywords to exclude" />
     </div>
 
     <button id="clear-filters" class="btn secondary">Clear Filters</button>
@@ -118,5 +154,37 @@
 </footer>
 
 <script src="script.js"></script>
+<script>
+  // Rozšíření pro exclude keywords - filtruje položky obsahující vyloučená slova
+  document.addEventListener('DOMContentLoaded', () => {
+    const excludeInput = document.getElementById('excludeKeywords');
+    if (excludeInput) {
+      excludeInput.addEventListener('input', () => {
+        filterItems('talent-list');
+      });
+    }
+  });
+
+  const originalFilterItems = window.filterItems;
+  window.filterItems = function(listId) {
+    originalFilterItems(listId);
+
+    if (listId !== 'talent-list') return;
+
+    const list = document.getElementById(listId);
+    if (!list) return;
+
+    const items = Array.from(list.querySelectorAll('.card'));
+    const excludeInput = document.getElementById('excludeKeywords');
+    const excludeWords = excludeInput.value.toLowerCase().split(',').map(s => s.trim()).filter(Boolean);
+
+    items.forEach(item => {
+      if (item.style.display === 'none') return;
+      const text = item.textContent.toLowerCase();
+      const exclude = excludeWords.some(word => text.includes(word));
+      if (exclude) item.style.display = 'none';
+    });
+  }
+</script>
 </body>
 </html>
