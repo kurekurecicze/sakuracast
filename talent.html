@@ -5,37 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>SakuraCast - Talent</title>
   <link rel="stylesheet" href="style.css" />
-  <style>
-    /* Doplněk pro filtry */
-    .filters {
-      background: white;
-      padding: 20px;
-      margin-bottom: 30px;
-      border-radius: 16px;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-    }
-
-    .filters h4 {
-      margin-top: 0;
-      color: #ff4d6d;
-      margin-bottom: 12px;
-    }
-
-    .filter-group {
-      margin-bottom: 20px;
-    }
-
-    .filter-group label {
-      display: block;
-      margin-bottom: 6px;
-      cursor: pointer;
-    }
-
-    .filter-group input[type="checkbox"] {
-      margin-right: 8px;
-      cursor: pointer;
-    }
-  </style>
 </head>
 <body>
 
@@ -52,62 +21,8 @@
 <main class="container">
   <h1>Talent Search</h1>
 
-  <section class="filters">
-
-    <div class="filter-group">
-      <h4>Gender</h4>
-      <label><input type="checkbox" name="gender" value="Male"> Male</label>
-      <label><input type="checkbox" name="gender" value="Female"> Female</label>
-      <label><input type="checkbox" name="gender" value="Non-binary"> Non-binary</label>
-    </div>
-
-    <div class="filter-group">
-      <h4>Age Range</h4>
-      <label><input type="checkbox" name="age" value="Child"> Child</label>
-      <label><input type="checkbox" name="age" value="Teen"> Teen</label>
-      <label><input type="checkbox" name="age" value="Young Adult"> Young Adult</label>
-      <label><input type="checkbox" name="age" value="Adult"> Adult</label>
-      <label><input type="checkbox" name="age" value="Middle-aged"> Middle-aged</label>
-      <label><input type="checkbox" name="age" value="Senior"> Senior</label>
-    </div>
-
-    <div class="filter-group">
-      <h4>Accent / Dialect</h4>
-      <strong>Europe</strong><br />
-      <label><input type="checkbox" name="accent" value="British English"> British English</label>
-      <label><input type="checkbox" name="accent" value="German"> German</label>
-      <label><input type="checkbox" name="accent" value="Russian"> Russian</label>
-      <label><input type="checkbox" name="accent" value="Czech"> Czech</label>
-      <label><input type="checkbox" name="accent" value="French"> French</label>
-      <label><input type="checkbox" name="accent" value="Spanish (Spain)"> Spanish (Spain)</label>
-      <br />
-      <strong>North America</strong><br />
-      <label><input type="checkbox" name="accent" value="American English"> American English</label>
-      <label><input type="checkbox" name="accent" value="Canadian English"> Canadian English</label>
-      <label><input type="checkbox" name="accent" value="Mexican Spanish"> Mexican Spanish</label>
-    </div>
-
-    <div class="filter-group">
-      <h4>Voice Style</h4>
-      <label><input type="checkbox" name="style" value="Soft"> Soft</label>
-      <label><input type="checkbox" name="style" value="Deep"> Deep</label>
-      <label><input type="checkbox" name="style" value="Aggressive"> Aggressive</label>
-      <label><input type="checkbox" name="style" value="Emotional"> Emotional</label>
-      <label><input type="checkbox" name="style" value="Neutral"> Neutral</label>
-      <label><input type="checkbox" name="style" value="Comic"> Comic</label>
-      <label><input type="checkbox" name="style" value="Narration"> Narration</label>
-    </div>
-
-    <div class="filter-group">
-      <h4>Availability</h4>
-      <label><input type="checkbox" name="availability" value="Immediate"> Immediate</label>
-      <label><input type="checkbox" name="availability" value="Within a week"> Within a week</label>
-      <label><input type="checkbox" name="availability" value="Within a month"> Within a month</label>
-      <label><input type="checkbox" name="availability" value="Negotiable"> Negotiable</label>
-    </div>
-
-    <button id="clear-filters" class="btn secondary">Clear Filters</button>
-  </section>
+  <!-- Filtr se načte sem -->
+  <div id="filter-container"></div>
 
   <section>
     <div class="grid" id="talent-list">
@@ -141,8 +56,27 @@
   <p>© 2024 SakuraCast • Built with 🌸</p>
 </footer>
 
-<script src="script.js"></script>
 <script>
+// Načtení externího filtru z filters.html
+document.addEventListener('DOMContentLoaded', () => {
+  fetch('filters.html')
+    .then(response => response.text())
+    .then(html => {
+      document.getElementById('filter-container').innerHTML = html;
+
+      filterTalent();
+
+      document.querySelectorAll('.filters input[type="checkbox"]').forEach(input => {
+        input.addEventListener('change', filterTalent);
+      });
+
+      document.getElementById('clear-filters').addEventListener('click', () => {
+        document.querySelectorAll('.filters input[type="checkbox"]').forEach(i => i.checked = false);
+        filterTalent();
+      });
+    });
+});
+
 function filterTalent() {
   const talents = document.querySelectorAll('#talent-list .card');
 
@@ -150,7 +84,7 @@ function filterTalent() {
     return Array.from(document.querySelectorAll(`input[name="${name}"]:checked`)).map(i => i.value);
   }
 
-  const selectedGenders = getCheckedValues('gender');
+  const selectedGenders = getCheckedValues('voiceGender').length ? getCheckedValues('voiceGender') : getCheckedValues('gender');
   const selectedAges = getCheckedValues('age');
   const selectedAccents = getCheckedValues('accent');
   const selectedStyles = getCheckedValues('style');
@@ -169,25 +103,11 @@ function filterTalent() {
     const matchesStyle = selectedStyles.length === 0 || selectedStyles.includes(style);
     const matchesAvailability = selectedAvailability.length === 0 || selectedAvailability.includes(availability);
 
-    if (matchesGender && matchesAge && matchesAccent && matchesStyle && matchesAvailability) {
-      card.style.display = '';
-    } else {
-      card.style.display = 'none';
-    }
+    card.style.display = matchesGender && matchesAge && matchesAccent && matchesStyle && matchesAvailability ? '' : 'none';
   });
 }
-
-document.querySelectorAll('.filters input[type="checkbox"]').forEach(input => {
-  input.addEventListener('change', filterTalent);
-});
-
-document.getElementById('clear-filters').addEventListener('click', () => {
-  document.querySelectorAll('.filters input[type="checkbox"]').forEach(i => i.checked = false);
-  filterTalent();
-});
-
-filterTalent();
 </script>
 
+<script src="script.js"></script>
 </body>
 </html>
