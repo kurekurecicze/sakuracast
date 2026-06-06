@@ -1,101 +1,81 @@
-/* =========================
-   Základní styl pro filtrovací záložky (filters-tabbar)
-========================= */
+// Správa záložkových filtrů a filtrování položek
+document.addEventListener('DOMContentLoaded', () => {
+  const filterContainer = document.getElementById('filter-container');
 
-.filters-tabbar {
-  background-color: #fff0f6; /* jemně růžové pozadí, ladí s tvým stylem */
-  padding: 20px;
-  border-radius: 16px;
-  margin-bottom: 30px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-  user-select: none;
-  font-size: 14px;
-}
+  if (!filterContainer) return;
 
-.filters-tabbar .filter-group {
-  margin-bottom: 20px;
-}
+  // Funkce: Aktivace/Deaktivace filtrů (tlacitek)
+  filterContainer.addEventListener('click', (e) => {
+    const btn = e.target.closest('button[data-filter-value]');
+    if (!btn) return;
 
-.filters-tabbar h4 {
-  margin: 0 0 10px;
-  color: #ff4d6d;
-  font-weight: 700;
-  font-size: 16px;
-}
+    btn.classList.toggle('active');
 
-.filters-tabbar .filter-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
+    filterItems();
+  });
 
-.filters-tabbar .filter-buttons button {
-  background-color: #ffe4eb;
-  color: #8b3d4a;
-  border: 2px solid transparent;
-  border-radius: 30px;
-  padding: 8px 16px;
-  cursor: pointer;
-  font-weight: 600;
-  transition:
-    background-color 0.3s ease,
-    color 0.3s ease,
-    border-color 0.3s ease,
-    transform 0.15s ease;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.08);
-}
-
-.filters-tabbar .filter-buttons button:hover,
-.filters-tabbar .filter-buttons button:focus {
-  background-color: #ff8fab;
-  color: white;
-  outline: none;
-  transform: translateY(-2px);
-  border-color: #ff4d6d;
-}
-
-.filters-tabbar .filter-buttons button.active {
-  background-color: #ff4d6d;
-  color: white;
-  font-weight: 700;
-  border-color: #ff3b64;
-  box-shadow: 0 4px 10px rgba(255, 77, 109, 0.5);
-  cursor: default;
-}
-
-.filters-tabbar #clear-filters {
-  margin-top: 10px;
-  background-color: transparent;
-  color: #ff4d6d;
-  border: 2px solid #ff4d6d;
-  padding: 8px 20px;
-  border-radius: 999px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease;
-  box-shadow: none;
-}
-
-.filters-tabbar #clear-filters:hover,
-.filters-tabbar #clear-filters:focus {
-  background-color: #ff4d6d;
-  color: white;
-  outline: none;
-  box-shadow: 0 4px 10px rgba(255, 77, 109, 0.6);
-}
-
-/* =========================
-   Responsivita pro filtrování
-========================= */
-
-@media (max-width: 600px) {
-  .filters-tabbar {
-    font-size: 13px;
-    padding: 16px;
+  // Vyčištění všech filtrů
+  const clearBtn = filterContainer.querySelector('#clear-filters');
+  if (clearBtn) {
+    clearBtn.addEventListener('click', () => {
+      filterContainer.querySelectorAll('button.active').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      filterItems();
+    });
   }
 
-  .filters-tabbar .filter-buttons button {
-    padding: 6px 12px;
-    font-size: 13px;
+  // Hlavní funkce filtrování
+  function filterItems() {
+    // V projektu se list nachází v "projects-list", v talentu "talent-list"
+    const projectsList = document.getElementById('projects-list');
+    const talentList = document.getElementById('talent-list');
+    const list = projectsList || talentList;
+    if (!list) return;
+
+    const items = list.querySelectorAll('.card');
+
+    // Seskupení vybraných filtrů podle kategorie (data-filter-name)
+    const activeFilters = {};
+
+    filterContainer.querySelectorAll('.filter-buttons').forEach(group => {
+      const filterName = group.getAttribute('data-filter-name');
+      const activeBtns = [...group.querySelectorAll('button.active')].map(b => b.getAttribute('data-filter-value'));
+
+      activeFilters[filterName] = activeBtns;
+    });
+
+    items.forEach(item => {
+      let visible = true;
+
+      for (let [filterName, selectedValues] of Object.entries(activeFilters)) {
+        if (selectedValues.length === 0) continue; // není filtr
+
+        // Data atributy jsou podle filterName, ale mohou se pojmenovávat trochu jinak
+        // V projektech jsou třeba "data-projecttype" -> mapujeme filterName na správný datový atribut
+        let dataAttr = 'data-' + filterName.toLowerCase();
+
+        // poslední úprava názvu kvůli kompatibilitě (voiceGender -> gender, audioLength, voiceStyle..)
+        if (filterName === 'voiceGender') dataAttr = 'data-gender';
+        if (filterName === 'style') dataAttr = 'data-style'; // už je ok
+        if (filterName === 'voiceGender') dataAttr = 'data-gender';
+
+        // Zkus hodnotu z data atributu (nebo pokud ne, z původního přímo filterName)
+
+        let itemValue = item.getAttribute(dataAttr);
+        if (!itemValue) {
+          // Pokud tohle nefunguje, zkus filterName bez zpracování:
+          itemValue = item.getAttribute('data-' + filterName);
+        }
+
+        // filtr je multiselect, tedy viditelné, pokud itemValue je mezi vybranými
+        if (!selectedValues.includes(itemValue)) {
+          visible = false;
+          break;
+        }
+      }
+
+      item.style.display = visible ? '' : 'none';
+    });
   }
-}
+});
