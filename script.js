@@ -24,7 +24,7 @@ function updateAuthUI() {
 
   if (isUserLoggedIn()) {
     if (authButtons) authButtons.style.display = "none";
-    if (userButtons) userButtons.style.display = "block";
+    if (userButtons) userButtons.style.display = "flex";
     if (profileLink) profileLink.style.display = "inline";
   } else {
     if (authButtons) authButtons.style.display = "flex";
@@ -58,23 +58,18 @@ window.addEventListener("DOMContentLoaded", () => {
     toggleBtn.addEventListener("click", toggleTheme);
   }
 
-  // Inicializace autentizačního stavu UI
   updateAuthUI();
 
-  // Přidání obsluhy odhlášení
   const logoutBtn = document.getElementById("logout-btn");
   if (logoutBtn) {
     logoutBtn.addEventListener("click", () => {
       logoutUser();
-      // Po odhlášení přesměruj na homepage např.
       window.location.href = "index.html";
     });
   }
 
-  // Inicializace filtrů
   initFilters();
 
-  // Vstupní pole exclude keywords
   const excludeInput = document.getElementById("excludeKeywords");
   if (excludeInput) {
     excludeInput.addEventListener("input", () => {
@@ -140,9 +135,22 @@ function filterItems(listId) {
       if (key === "voiceGender") dataAttr = "gender";
 
       const val = item.getAttribute("data-" + dataAttr);
-      if (!activeFilters[key].includes(val)) {
-        visible = false;
-        break;
+
+      if (key === "language") {
+        // u jazyka může být více hodnot oddělených čárkou, stačí jeden shodný
+        const itemLangs = val ? val.toLowerCase().split(",").map(s => s.trim()) : [];
+        const filterLangs = activeFilters[key].map(s => s.toLowerCase());
+
+        const langMatch = filterLangs.some(lang => itemLangs.includes(lang));
+        if (!langMatch) {
+          visible = false;
+          break;
+        }
+      } else {
+        if (!activeFilters[key].includes(val)) {
+          visible = false;
+          break;
+        }
       }
     }
 
