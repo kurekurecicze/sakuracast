@@ -23,18 +23,19 @@
 <main class="container">
   <h1>Browse Projects</h1>
 
-  <!-- Statický filtr přímo v HTML -->
   <section class="filters-tabbar">
 
     <div class="filter-group">
       <h4>Project Type</h4>
       <div class="filter-buttons" data-filter-name="projectType">
         <button type="button" data-filter-value="Game">Game</button>
-        <button type="button" data-filter-value="Anime">Anime</button>
+        <button type="button" data-filter-value="Animation">Animation</button>
         <button type="button" data-filter-value="Commercial">Commercial</button>
         <button type="button" data-filter-value="Audiobook">Audiobook</button>
-        <button type="button" data-filter-value="Animation">Animation</button>
         <button type="button" data-filter-value="Podcast">Podcast</button>
+        <button type="button" data-filter-value="Roleplay">Roleplay</button>
+        <button type="button" data-filter-value="Original">Original</button>
+        <button type="button" data-filter-value="Fanmade">Fanmade</button>
         <button type="button" data-filter-value="Other">Other</button>
       </div>
     </div>
@@ -50,37 +51,68 @@
 
     <div class="filter-group">
       <h4>Accent / Dialect</h4>
-      <div class="filter-buttons" data-filter-name="accent">
-        <button type="button" data-filter-value="British English">British English</button>
-        <button type="button" data-filter-value="German">German</button>
-        <button type="button" data-filter-value="Russian">Russian</button>
-        <button type="button" data-filter-value="Czech">Czech</button>
-        <button type="button" data-filter-value="French">French</button>
-        <button type="button" data-filter-value="Spanish (Spain)">Spanish</button>
-        <button type="button" data-filter-value="American English">American English</button>
-        <button type="button" data-filter-value="Canadian English">Canadian English</button>
-        <button type="button" data-filter-value="Mexican Spanish">Mexican Spanish</button>
+      <details>
+        <summary>Europe</summary>
+        <div class="filter-buttons" data-filter-name="accent">
+          <button type="button" data-filter-value="British English">British English</button>
+          <button type="button" data-filter-value="German">German</button>
+          <button type="button" data-filter-value="Russian">Russian</button>
+          <button type="button" data-filter-value="Czech">Czech</button>
+          <button type="button" data-filter-value="French">French</button>
+          <button type="button" data-filter-value="Spanish (Spain)">Spanish (Spain)</button>
+          <button type="button" data-filter-value="Other Europe">Other</button>
+        </div>
+      </details>
+      <details>
+        <summary>North America</summary>
+        <div class="filter-buttons" data-filter-name="accent">
+          <button type="button" data-filter-value="American English">American English</button>
+          <button type="button" data-filter-value="Canadian English">Canadian English</button>
+          <button type="button" data-filter-value="Mexican Spanish">Mexican Spanish</button>
+          <button type="button" data-filter-value="Other North America">Other</button>
+        </div>
+      </details>
+      <details>
+        <summary>Asia</summary>
+        <div class="filter-buttons" data-filter-name="accent">
+          <button type="button" data-filter-value="Japanese">Japanese</button>
+          <button type="button" data-filter-value="Chinese">Chinese</button>
+          <button type="button" data-filter-value="Korean">Korean</button>
+          <button type="button" data-filter-value="Other Asia">Other</button>
+        </div>
+      </details>
+      <details>
+        <summary>Oceania</summary>
+        <div class="filter-buttons" data-filter-name="accent">
+          <button type="button" data-filter-value="Australian English">Australian English</button>
+          <button type="button" data-filter-value="Other Oceania">Other</button>
+        </div>
+      </details>
+      <details>
+        <summary>Other</summary>
+        <div class="filter-buttons" data-filter-name="accent">
+          <button type="button" data-filter-value="Other">Other</button>
+        </div>
+      </details>
+    </div>
+
+    <div class="filter-group">
+      <h4>Amount of Lines</h4>
+      <div class="filter-buttons" data-filter-name="lines">
+        <button type="button" data-filter-value="1-49">1-49</button>
+        <button type="button" data-filter-value="50-99">50-99</button>
+        <button type="button" data-filter-value="100-149">100-149</button>
+        <button type="button" data-filter-value="150+">150+</button>
       </div>
     </div>
 
     <div class="filter-group">
-      <h4>Audio Length</h4>
-      <div class="filter-buttons" data-filter-name="audioLength">
-        <button type="button" data-filter-value="Short">Short</button>
-        <button type="button" data-filter-value="Medium">Medium</button>
-        <button type="button" data-filter-value="Long">Long</button>
-      </div>
-    </div>
-
-    <div class="filter-group">
-      <h4>Age Range</h4>
-      <div class="filter-buttons" data-filter-name="age">
-        <button type="button" data-filter-value="Child">Child</button>
-        <button type="button" data-filter-value="Teen">Teen</button>
-        <button type="button" data-filter-value="Young Adult">Young Adult</button>
-        <button type="button" data-filter-value="Adult">Adult</button>
-        <button type="button" data-filter-value="Middle-aged">Middle-aged</button>
-        <button type="button" data-filter-value="Senior">Senior</button>
+      <h4>Amount of Words</h4>
+      <div class="filter-buttons" data-filter-name="words">
+        <button type="button" data-filter-value="1-199">1-199</button>
+        <button type="button" data-filter-value="200-399">200-399</button>
+        <button type="button" data-filter-value="400-599">400-599</button>
+        <button type="button" data-filter-value="600+">600+</button>
       </div>
     </div>
 
@@ -94,17 +126,22 @@
         <button type="button" data-filter-value="Neutral">Neutral</button>
         <button type="button" data-filter-value="Comic">Comic</button>
         <button type="button" data-filter-value="Narration">Narration</button>
+        <button type="button" data-filter-value="Creature">Creature</button>
       </div>
     </div>
 
     <div class="filter-group">
-      <h4>Availability</h4>
-      <div class="filter-buttons" data-filter-name="availability">
-        <button type="button" data-filter-value="Immediate">Immediate</button>
-        <button type="button" data-filter-value="Within a week">Within a week</button>
-        <button type="button" data-filter-value="Within a month">Within a month</button>
-        <button type="button" data-filter-value="Negotiable">Negotiable</button>
+      <h4>Sort By</h4>
+      <div class="filter-buttons" data-filter-name="sort">
+        <button type="button" data-filter-value="newlyAdded">Newly Added</button>
+        <button type="button" data-filter-value="random">Random</button>
+        <button type="button" data-filter-value="nearDeadline">Near Deadline</button>
       </div>
+    </div>
+
+    <div class="filter-group">
+      <h4>Exclude Keywords</h4>
+      <input type="text" id="excludeKeywords" placeholder="Enter keywords to exclude" />
     </div>
 
     <button id="clear-filters" class="btn secondary">Clear Filters</button>
@@ -113,25 +150,25 @@
 
   <section class="grid" id="projects-list">
 
-    <div class="card" data-projecttype="Game" data-gender="Male" data-accent="American English" data-audiolength="Medium" data-age="Young Adult" data-style="Deep" data-availability="Immediate">
+    <div class="card" data-projecttype="Game" data-gender="Male" data-accent="American English" data-lines="50-99" data-words="200-399" data-style="Deep" data-availability="Immediate">
       <div class="tag">Game</div>
       <h2>Fantasy RPG - Hero Role</h2>
       <p>Looking for strong heroic male voice with American English accent.</p>
     </div>
 
-    <div class="card" data-projecttype="Anime" data-gender="Female" data-accent="Japanese" data-audiolength="Short" data-age="Young Adult" data-style="Soft" data-availability="Immediate">
+    <div class="card" data-projecttype="Anime" data-gender="Female" data-accent="Japanese" data-lines="1-49" data-words="1-199" data-style="Soft" data-availability="Immediate">
       <div class="tag">Anime</div>
       <h2>Sakura Spirits</h2>
       <p>Soft emotional female voice needed, Japanese accent preferred.</p>
     </div>
 
-    <div class="card" data-projecttype="Commercial" data-gender="Female" data-accent="British English" data-audiolength="Short" data-age="Adult" data-style="Neutral" data-availability="Negotiable">
+    <div class="card" data-projecttype="Commercial" data-gender="Female" data-accent="British English" data-lines="1-49" data-words="1-199" data-style="Neutral" data-availability="Negotiable">
       <div class="tag">Commercial</div>
       <h2>Tech Product Voiceover</h2>
       <p>Confident female voice with British English accent.</p>
     </div>
 
-    <div class="card" data-projecttype="Podcast" data-gender="Non-binary" data-accent="Czech" data-audiolength="Long" data-age="Middle-aged" data-style="Emotional" data-availability="Within a month">
+    <div class="card" data-projecttype="Podcast" data-gender="Non-binary" data-accent="Czech" data-lines="150+" data-words="600+" data-style="Emotional" data-availability="Within a month">
       <div class="tag">Podcast</div>
       <h2>International Talk</h2>
       <p>Non-binary speaker with Czech accent for podcast series.</p>
@@ -145,5 +182,35 @@
 </footer>
 
 <script src="script.js"></script>
-</body>
-</html>
+<script>
+  // Rozšíření filtrů o zpracování exclude keywords a řazení
+  document.addEventListener('DOMContentLoaded', () => {
+    const excludeInput = document.getElementById('excludeKeywords');
+    if (excludeInput) {
+      excludeInput.addEventListener('input', () => {
+        filterItems('projects-list');
+      });
+    }
+
+    // Přepíšeme filterItems, aby brala excludeKeywords v potaz
+    const originalFilterItems = window.filterItems;
+    window.filterItems = function(listId) {
+      originalFilterItems(listId);
+
+      const list = document.getElementById(listId);
+      if (!list) return;
+      const items = Array.from(list.querySelectorAll('.card'));
+      const excludeWords = excludeInput.value.toLowerCase().split(',').map(s => s.trim()).filter(Boolean);
+
+      items.forEach(item => {
+        if (item.style.display === 'none') return;
+        const text = item.textContent.toLowerCase();
+        const exclude = excludeWords.some(word => text.includes(word));
+        if (exclude) item.style.display = 'none';
+      });
+
+      // řazení lze implementovat zde dle hodnoty ze záložky "Sort By"
+      // Pro demo necháme bez změny pořadí
+    }
+  });
+</script>
