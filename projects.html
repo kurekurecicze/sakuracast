@@ -9,7 +9,9 @@
 <body>
 
 <header>
-  <div class="logo"><a href="index.html" style="text-decoration:none; color:inherit;">🌸 SakuraCast</a></div>
+  <div class="logo">
+    <a href="index.html" style="text-decoration:none; color:inherit;">🌸 SakuraCast</a>
+  </div>
 
   <nav>
     <a href="talent.html">Talent Search</a>
@@ -21,39 +23,35 @@
 <main class="container">
   <h1>Browse Projects</h1>
 
-  <!-- Zde se načte filtr -->
   <div id="filter-container"></div>
 
-  <section>
-    <div class="grid" id="projects-list">
+  <section class="grid" id="projects-list">
 
-      <div class="card" data-projecttype="Game" data-gender="Male" data-accent="American English" data-audiolength="Medium" data-age="Young Adult" data-style="Deep" data-availability="Immediate">
-        <div class="tag">Game</div>
-        <h2>Fantasy RPG - Hero Role</h2>
-        <p>Looking for strong heroic male voice with American English accent.</p>
-      </div>
-
-      <div class="card" data-projecttype="Anime" data-gender="Female" data-accent="Japanese" data-audiolength="Short" data-age="Young Adult" data-style="Soft" data-availability="Immediate">
-        <div class="tag">Anime</div>
-        <h2>Sakura Spirits</h2>
-        <p>Soft emotional female voice needed, Japanese accent preferred.</p>
-      </div>
-
-      <div class="card" data-projecttype="Commercial" data-gender="Female" data-accent="British English" data-audiolength="Short" data-age="Adult" data-style="Neutral" data-availability="Negotiable">
-        <div class="tag">Commercial</div>
-        <h2>Tech Product Voiceover</h2>
-        <p>Confident female voice with British English accent.</p>
-      </div>
-
-      <div class="card" data-projecttype="Podcast" data-gender="Non-binary" data-accent="Czech" data-audiolength="Long" data-age="Middle-aged" data-style="Emotional" data-availability="Within a month">
-        <div class="tag">Podcast</div>
-        <h2>International Talk</h2>
-        <p>Non-binary speaker with Czech accent for podcast series.</p>
-      </div>
-
+    <div class="card" data-projecttype="Game" data-gender="Male" data-accent="American English" data-audiolength="Medium" data-age="Young Adult" data-style="Deep" data-availability="Immediate">
+      <div class="tag">Game</div>
+      <h2>Fantasy RPG - Hero Role</h2>
+      <p>Looking for strong heroic male voice with American English accent.</p>
     </div>
-  </section>
 
+    <div class="card" data-projecttype="Anime" data-gender="Female" data-accent="Japanese" data-audiolength="Short" data-age="Young Adult" data-style="Soft" data-availability="Immediate">
+      <div class="tag">Anime</div>
+      <h2>Sakura Spirits</h2>
+      <p>Soft emotional female voice needed, Japanese accent preferred.</p>
+    </div>
+
+    <div class="card" data-projecttype="Commercial" data-gender="Female" data-accent="British English" data-audiolength="Short" data-age="Adult" data-style="Neutral" data-availability="Negotiable">
+      <div class="tag">Commercial</div>
+      <h2>Tech Product Voiceover</h2>
+      <p>Confident female voice with British English accent.</p>
+    </div>
+
+    <div class="card" data-projecttype="Podcast" data-gender="Non-binary" data-accent="Czech" data-audiolength="Long" data-age="Middle-aged" data-style="Emotional" data-availability="Within a month">
+      <div class="tag">Podcast</div>
+      <h2>International Talk</h2>
+      <p>Non-binary speaker with Czech accent for podcast series.</p>
+    </div>
+
+  </section>
 </main>
 
 <footer>
@@ -61,65 +59,57 @@
 </footer>
 
 <script>
-// Načtení externího filtru z filters.html
-document.addEventListener('DOMContentLoaded', () => {
-  fetch('filters.html')
-    .then(response => response.text())
-    .then(html => {
-      document.getElementById('filter-container').innerHTML = html;
+  // načtení filtru - může být i z externího souboru
+  document.addEventListener('DOMContentLoaded', () => {
+    fetch('filters.html')
+      .then(response => response.text())
+      .then(html => {
+        document.getElementById('filter-container').innerHTML = html;
 
-      // Inicializuj filtrování zde – volání funkce z dalších skriptů, pokud je potřeba
-      filterProjects();
-      
-      // Přidej posluchače na změnu filtrů
-      document.querySelectorAll('.filters input[type="checkbox"]').forEach(input => {
-        input.addEventListener('change', filterProjects);
-      });
+        document.querySelectorAll('.filters-tabbar .filter-buttons button').forEach(btn => {
+          btn.addEventListener('click', () => {
+            btn.classList.toggle('active');
+            filterProjects();
+          });
+        });
 
-      document.getElementById('clear-filters').addEventListener('click', () => {
-        document.querySelectorAll('.filters input[type="checkbox"]').forEach(i => i.checked = false);
+        const clearBtn = document.getElementById('clear-filters');
+        if(clearBtn){
+          clearBtn.addEventListener('click', () => {
+            document.querySelectorAll('.filters-tabbar .filter-buttons button.active').forEach(b => b.classList.remove('active'));
+            filterProjects();
+          });
+        }
+
         filterProjects();
       });
-    });
-});
-
-// Funkce filtrování projektů
-function filterProjects() {
-  const projects = document.querySelectorAll('#projects-list .card');
-
-  function getCheckedValues(name) {
-    return Array.from(document.querySelectorAll(`input[name="${name}"]:checked`)).map(i => i.value);
-  }
-
-  const selectedProjectTypes = getCheckedValues('projectType');
-  const selectedGenders = getCheckedValues('voiceGender');
-  const selectedAccents = getCheckedValues('accent');
-  const selectedLengths = getCheckedValues('audioLength');
-  const selectedAges = getCheckedValues('age');
-  const selectedStyles = getCheckedValues('style');
-  const selectedAvailability = getCheckedValues('availability');
-
-  projects.forEach(card => {
-    const projectType = card.getAttribute('data-projecttype');
-    const gender = card.getAttribute('data-gender');
-    const accent = card.getAttribute('data-accent');
-    const length = card.getAttribute('data-audiolength');
-    const age = card.getAttribute('data-age');
-    const style = card.getAttribute('data-style');
-    const availability = card.getAttribute('data-availability');
-
-    const matches =
-      (selectedProjectTypes.length === 0 || selectedProjectTypes.includes(projectType)) &&
-      (selectedGenders.length === 0 || selectedGenders.includes(gender)) &&
-      (selectedAccents.length === 0 || selectedAccents.includes(accent)) &&
-      (selectedLengths.length === 0 || selectedLengths.includes(length)) &&
-      (selectedAges.length === 0 || selectedAges.includes(age)) &&
-      (selectedStyles.length === 0 || selectedStyles.includes(style)) &&
-      (selectedAvailability.length === 0 || selectedAvailability.includes(availability));
-
-    card.style.display = matches ? '' : 'none';
   });
-}
+
+  function filterProjects() {
+    const projects = document.querySelectorAll('#projects-list .card');
+
+    // Seskupujeme aktivní filtry
+    const activeFilters = {};
+    document.querySelectorAll('.filters-tabbar .filter-buttons').forEach(group => {
+      const filterName = group.getAttribute('data-filter-name');
+      activeFilters[filterName] = Array.from(group.querySelectorAll('button.active')).map(b => b.getAttribute('data-filter-value'));
+    });
+
+    projects.forEach(proj => {
+      let visible = true;
+      for(let key in activeFilters){
+        if(activeFilters[key].length === 0) continue;
+        let dataKey = key.toLowerCase();
+        if(key === 'voiceGender') dataKey = 'gender'; // přepis pro atributy
+        const val = proj.getAttribute('data-' + dataKey);
+        if(!activeFilters[key].includes(val)){
+          visible = false;
+          break;
+        }
+      }
+      proj.style.display = visible ? '' : 'none';
+    });
+  }
 </script>
 
 <script src="script.js"></script>
