@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>SakuraCast - Projects</title>
+  <title>SakuraCast - Talent</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -14,31 +14,16 @@
   </div>
 
   <nav>
-    <a href="talent.html">Talent Search</a>
+    <a href="projects.html">Projects</a>
   </nav>
 
   <button class="toggle" aria-label="Toggle Dark/Light Mode">🌙</button>
 </header>
 
 <main class="container">
-  <h1>Browse Projects</h1>
+  <h1>Talent Search</h1>
 
   <section class="filters-tabbar">
-
-    <div class="filter-group">
-      <h4>Project Type</h4>
-      <div class="filter-buttons" data-filter-name="projectType">
-        <button type="button" data-filter-value="Game">Game</button>
-        <button type="button" data-filter-value="Animation">Animation</button>
-        <button type="button" data-filter-value="Commercial">Commercial</button>
-        <button type="button" data-filter-value="Audiobook">Audiobook</button>
-        <button type="button" data-filter-value="Podcast">Podcast</button>
-        <button type="button" data-filter-value="Roleplay">Roleplay</button>
-        <button type="button" data-filter-value="Original">Original</button>
-        <button type="button" data-filter-value="Fanmade">Fanmade</button>
-        <button type="button" data-filter-value="Other">Other</button>
-      </div>
-    </div>
 
     <div class="filter-group">
       <h4>Voice Gender</h4>
@@ -97,22 +82,14 @@
     </div>
 
     <div class="filter-group">
-      <h4>Amount of Lines</h4>
-      <div class="filter-buttons" data-filter-name="lines">
-        <button type="button" data-filter-value="1-49">1-49</button>
-        <button type="button" data-filter-value="50-99">50-99</button>
-        <button type="button" data-filter-value="100-149">100-149</button>
-        <button type="button" data-filter-value="150+">150+</button>
-      </div>
-    </div>
-
-    <div class="filter-group">
-      <h4>Amount of Words</h4>
-      <div class="filter-buttons" data-filter-name="words">
-        <button type="button" data-filter-value="1-199">1-199</button>
-        <button type="button" data-filter-value="200-399">200-399</button>
-        <button type="button" data-filter-value="400-599">400-599</button>
-        <button type="button" data-filter-value="600+">600+</button>
+      <h4>Age Range</h4>
+      <div class="filter-buttons" data-filter-name="age">
+        <button type="button" data-filter-value="Child">Child</button>
+        <button type="button" data-filter-value="Teen">Teen</button>
+        <button type="button" data-filter-value="Young Adult">Young Adult</button>
+        <button type="button" data-filter-value="Adult">Adult</button>
+        <button type="button" data-filter-value="Middle-aged">Middle-aged</button>
+        <button type="button" data-filter-value="Senior">Senior</button>
       </div>
     </div>
 
@@ -131,47 +108,33 @@
     </div>
 
     <div class="filter-group">
-      <h4>Sort By</h4>
-      <div class="filter-buttons" data-filter-name="sort">
-        <button type="button" data-filter-value="newlyAdded">Newly Added</button>
-        <button type="button" data-filter-value="random">Random</button>
-        <button type="button" data-filter-value="nearDeadline">Near Deadline</button>
-      </div>
-    </div>
-
-    <div class="filter-group">
       <h4>Exclude Keywords</h4>
       <input type="text" id="excludeKeywords" placeholder="Enter keywords to exclude" />
     </div>
 
     <button id="clear-filters" class="btn secondary">Clear Filters</button>
-
   </section>
 
-  <section class="grid" id="projects-list">
+  <section class="grid" id="talent-list">
 
-    <div class="card" data-projecttype="Game" data-gender="Male" data-accent="American English" data-lines="50-99" data-words="200-399" data-style="Deep" data-availability="Immediate">
-      <div class="tag">Game</div>
-      <h2>Fantasy RPG - Hero Role</h2>
-      <p>Looking for strong heroic male voice with American English accent.</p>
+    <div class="card" data-gender="Female" data-age="Young Adult" data-accent="Japanese" data-style="Soft" data-availability="Immediate">
+      <h3>Yuki VA</h3>
+      <p>Japanese / English • Soft Anime Voices</p>
     </div>
 
-    <div class="card" data-projecttype="Anime" data-gender="Female" data-accent="Japanese" data-lines="1-49" data-words="1-199" data-style="Soft" data-availability="Immediate">
-      <div class="tag">Anime</div>
-      <h2>Sakura Spirits</h2>
-      <p>Soft emotional female voice needed, Japanese accent preferred.</p>
+    <div class="card" data-gender="Male" data-age="Adult" data-accent="American English" data-style="Deep" data-availability="Within a week">
+      <h3>Max Stone</h3>
+      <p>Deep male voice • Game characters</p>
     </div>
 
-    <div class="card" data-projecttype="Commercial" data-gender="Female" data-accent="British English" data-lines="1-49" data-words="1-199" data-style="Neutral" data-availability="Negotiable">
-      <div class="tag">Commercial</div>
-      <h2>Tech Product Voiceover</h2>
-      <p>Confident female voice with British English accent.</p>
+    <div class="card" data-gender="Female" data-age="Adult" data-accent="British English" data-style="Neutral" data-availability="Negotiable">
+      <h3>Luna Rose</h3>
+      <p>Commercial / soft voice</p>
     </div>
 
-    <div class="card" data-projecttype="Podcast" data-gender="Non-binary" data-accent="Czech" data-lines="150+" data-words="600+" data-style="Emotional" data-availability="Within a month">
-      <div class="tag">Podcast</div>
-      <h2>International Talk</h2>
-      <p>Non-binary speaker with Czech accent for podcast series.</p>
+    <div class="card" data-gender="Non-binary" data-age="Middle-aged" data-accent="Czech" data-style="Emotional" data-availability="Within a month">
+      <h3>Alex Novak</h3>
+      <p>Versatile voice • Emotional roles</p>
     </div>
 
   </section>
@@ -183,34 +146,35 @@
 
 <script src="script.js"></script>
 <script>
-  // Rozšíření filtrů o zpracování exclude keywords a řazení
   document.addEventListener('DOMContentLoaded', () => {
     const excludeInput = document.getElementById('excludeKeywords');
     if (excludeInput) {
       excludeInput.addEventListener('input', () => {
-        filterItems('projects-list');
+        filterItems('talent-list');
       });
-    }
-
-    // Přepíšeme filterItems, aby brala excludeKeywords v potaz
-    const originalFilterItems = window.filterItems;
-    window.filterItems = function(listId) {
-      originalFilterItems(listId);
-
-      const list = document.getElementById(listId);
-      if (!list) return;
-      const items = Array.from(list.querySelectorAll('.card'));
-      const excludeWords = excludeInput.value.toLowerCase().split(',').map(s => s.trim()).filter(Boolean);
-
-      items.forEach(item => {
-        if (item.style.display === 'none') return;
-        const text = item.textContent.toLowerCase();
-        const exclude = excludeWords.some(word => text.includes(word));
-        if (exclude) item.style.display = 'none';
-      });
-
-      // řazení lze implementovat zde dle hodnoty ze záložky "Sort By"
-      // Pro demo necháme bez změny pořadí
     }
   });
+
+  const originalFilterItems = window.filterItems;
+  window.filterItems = function(listId) {
+    originalFilterItems(listId);
+
+    if (listId !== 'talent-list') return;
+
+    const list = document.getElementById(listId);
+    if (!list) return;
+
+    const items = Array.from(list.querySelectorAll('.card'));
+    const excludeInput = document.getElementById('excludeKeywords');
+    const excludeWords = excludeInput.value.toLowerCase().split(',').map(s => s.trim()).filter(Boolean);
+
+    items.forEach(item => {
+      if (item.style.display === 'none') return;
+      const text = item.textContent.toLowerCase();
+      const exclude = excludeWords.some(word => text.includes(word));
+      if (exclude) item.style.display = 'none';
+    });
+  }
 </script>
+</body>
+</html>
