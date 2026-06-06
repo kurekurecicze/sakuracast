@@ -25,6 +25,8 @@ header {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 30px;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 header h1,
@@ -35,8 +37,15 @@ header .logo {
   text-decoration: none;
 }
 
+nav {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
 nav a {
-  margin: 0 12px;
+  margin: 0 8px;
   text-decoration: none;
   color: #333;
   font-weight: 600;
@@ -49,6 +58,62 @@ nav a:hover,
 nav a.active {
   color: #ff4d6d;
   font-weight: 700;
+}
+
+/* Nové styly pro autentizační tlačítka */
+.auth-buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.auth-buttons a.btn,
+.auth-buttons button.btn {
+  text-decoration: none;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.auth-buttons a.btn.primary,
+.auth-buttons button.btn.primary {
+  background-color: #ff4d6d;
+  color: white;
+  border: none;
+  box-shadow: 0 4px 12px rgba(255, 77, 109, 0.6);
+}
+
+.auth-buttons a.btn.primary:hover,
+.auth-buttons button.btn.primary:hover,
+.auth-buttons a.btn.primary:focus,
+.auth-buttons button.btn.primary:focus {
+  background-color: #ff3b64;
+  outline: none;
+  box-shadow: 0 6px 16px rgba(255, 59, 100, 0.8);
+}
+
+.auth-buttons a.btn.secondary,
+.auth-buttons button.btn.secondary {
+  background-color: transparent;
+  color: #ff4d6d;
+  border: 2px solid #ff4d6d;
+}
+
+.auth-buttons a.btn.secondary:hover,
+.auth-buttons button.btn.secondary:hover,
+.auth-buttons a.btn.secondary:focus,
+.auth-buttons button.btn.secondary:focus {
+  background-color: #ff4d6d;
+  color: white;
+  outline: none;
 }
 
 .toggle {
