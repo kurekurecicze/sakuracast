@@ -1,341 +1,101 @@
 /* =========================
-   RESET a ZÁKLADNÍ STYLY
+   Základní styl pro filtrovací záložky (filters-tabbar)
 ========================= */
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-body {
-  background: #fff0f6;
-  color: #333;
-  transition: background 0.3s ease, color 0.3s ease;
-  line-height: 1.5;
-  min-height: 100vh;
+.filters-tabbar {
+  background-color: #fff0f6; /* jemně růžové pozadí, ladí s tvým stylem */
   padding: 20px;
-}
-
-/* =========================
-   HEADER + TOGGLE TLAČÍTKO
-========================= */
-
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 30px;
-}
-
-header h1,
-header .logo {
-  color: #ff4d6d;
-  font-weight: 700;
-  font-size: 2rem;
-  text-decoration: none;
-}
-
-nav a {
-  margin: 0 12px;
-  text-decoration: none;
-  color: #333;
-  font-weight: 600;
-  font-size: 14px;
-  transition: color 0.3s ease;
-  cursor: pointer;
-}
-
-nav a:hover,
-nav a.active {
-  color: #ff4d6d;
-  font-weight: 700;
-}
-
-/* Tlačítko pro přepínání světlého/tmavého režimu */
-.toggle {
-  cursor: pointer;
-  border: none;
-  padding: 10px 16px;
-  border-radius: 50%;
-  font-size: 1.5rem;
-  background-color: #ff8fab;
-  color: white;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.3s ease;
-}
-
-.toggle:hover,
-.toggle:focus {
-  background-color: #ff517e;
-  outline: none;
-}
-
-/* =========================
-   HLAVNÍ OBSAH + KONTEJNERY
-========================= */
-
-main,
-.container {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 0 20px 40px;
-}
-
-.subtitle {
-  opacity: 0.7;
-  margin-bottom: 16px;
-}
-
-/* Hero sekce na index.html */
-.hero {
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-.hero h2 {
-  font-size: 2.5rem;
-  color: #ff4d6d;
-  margin-bottom: 12px;
-}
-
-.hero p {
-  max-width: 600px;
-  margin: 0 auto 20px;
-  font-size: 1.1rem;
-  opacity: 0.8;
-}
-
-.hero div a {
-  margin: 0 12px;
-}
-
-/* Sekce Explore */
-.explore .card h3 {
-  margin-bottom: 12px;
-  color: #ff4d6d;
-}
-
-/* Tlačítka */
-button,
-a.btn {
-  background-color: #ff8fab;
-  border: none;
-  border-radius: 6px;
-  color: white;
-  padding: 10px 16px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin: 0.5rem 0;
-  display: inline-block;
-  text-align: center;
-  text-decoration: none;
-}
-
-button:hover,
-button:focus,
-a.btn:hover,
-a.btn:focus {
-  background-color: #ff517e;
-  outline: none;
-}
-
-/* Tlačítka uvnitř karet */
-.btn.primary {
-  padding: 12px 20px;
-  border-radius: 999px;
-  font-weight: bold;
-}
-
-/* Karty */
-.card {
-  background-color: white;
   border-radius: 16px;
-  padding: 20px;
+  margin-bottom: 30px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-  transition: transform 0.2s ease;
+  user-select: none;
+  font-size: 14px;
+}
+
+.filters-tabbar .filter-group {
   margin-bottom: 20px;
 }
 
-.card:hover {
-  transform: translateY(-5px);
-}
-
-/* Grid layouty */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 16px;
-  margin-bottom: 40px;
-}
-
-/* Pro speciální části dashboard a profilu */
-.stat {
-  font-size: 2.5rem;
-  font-weight: 700;
+.filters-tabbar h4 {
+  margin: 0 0 10px;
   color: #ff4d6d;
-  margin-bottom: 8px;
+  font-weight: 700;
+  font-size: 16px;
 }
 
-.tag {
-  font-size: 12px;
-  padding: 4px 12px;
-  border-radius: 999px;
-  background-color: #ffb6c1;
+.filters-tabbar .filter-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.filters-tabbar .filter-buttons button {
+  background-color: #ffe4eb;
   color: #8b3d4a;
-  display: inline-block;
-  margin-bottom: 8px;
-  margin-right: 6px;
-}
-
-/* Profile card */
-.profile-card {
-  background: white;
-  padding: 20px;
-  border-radius: 16px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-  margin-bottom: 24px;
-}
-
-.avatar {
-  width: 90px;
-  height: 90px;
-  border-radius: 50%;
-  background: #ffb6c1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 40px;
-  margin-bottom: 12px;
-}
-
-.subtitle {
-  opacity: 0.7;
-  margin: 8px 0 16px;
-}
-
-/* Footer */
-footer {
-  margin-top: 50px;
-  text-align: center;
-  color: #999;
-  font-size: 0.9rem;
-  background-color: #f8f8f8;
-  border-top: 1px solid #e0e0e0;
-  padding: 20px;
-}
-
-/* Nové - auth buttons v headeru */
-.auth-buttons {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.auth-buttons .btn.secondary {
-  border: 2px solid #ff8fab;
-  background: transparent;
-  color: #ff8fab;
+  border: 2px solid transparent;
+  border-radius: 30px;
   padding: 8px 16px;
-  border-radius: 99px;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  cursor: pointer;
+  font-weight: 600;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.15s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.08);
 }
 
-.auth-buttons .btn.secondary:hover,
-.auth-buttons .btn.secondary:focus {
+.filters-tabbar .filter-buttons button:hover,
+.filters-tabbar .filter-buttons button:focus {
   background-color: #ff8fab;
   color: white;
   outline: none;
+  transform: translateY(-2px);
+  border-color: #ff4d6d;
 }
 
-/* =========================
-   TMAVÝ REŽIM
-========================= */
-
-body.dark {
-  background: #1e1e2f;
-  color: #e9d7f7;
-}
-
-body.dark header h1,
-body.dark header .logo {
-  color: #ff9bcf;
-}
-
-body.dark nav a {
-  color: #e6b0ea;
-  cursor: pointer;
-}
-
-body.dark nav a:hover,
-body.dark nav a.active {
-  color: #ff9bcf;
+.filters-tabbar .filter-buttons button.active {
+  background-color: #ff4d6d;
+  color: white;
   font-weight: 700;
+  border-color: #ff3b64;
+  box-shadow: 0 4px 10px rgba(255, 77, 109, 0.5);
+  cursor: default;
 }
 
-body.dark .toggle {
-  background-color: #bb86fc;
-  color: #1e1e2f;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+.filters-tabbar #clear-filters {
+  margin-top: 10px;
+  background-color: transparent;
+  color: #ff4d6d;
+  border: 2px solid #ff4d6d;
+  padding: 8px 20px;
+  border-radius: 999px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  box-shadow: none;
 }
 
-body.dark .toggle:hover,
-body.dark .toggle:focus {
-  background-color: #9c6dfd;
+.filters-tabbar #clear-filters:hover,
+.filters-tabbar #clear-filters:focus {
+  background-color: #ff4d6d;
   color: white;
-}
-
-body.dark button,
-body.dark a.btn {
-  background-color: #bb86fc;
-  color: #1e1e2f;
-}
-
-body.dark button:hover,
-body.dark button:focus,
-body.dark a.btn:hover,
-body.dark a.btn:focus {
-  background-color: #9c6dfd;
-  color: white;
-}
-
-body.dark .card {
-  background-color: #241b2e;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
-}
-
-body.dark .tag {
-  background-color: #3a2a44;
-  color: #d8b7e8;
-}
-
-body.dark .profile-card {
-  background-color: #241b2e;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
-}
-
-body.dark .avatar {
-  background-color: #7c4d7d;
-  color: #f1d7ff;
+  outline: none;
+  box-shadow: 0 4px 10px rgba(255, 77, 109, 0.6);
 }
 
 /* =========================
-   RESPONSIVITA
+   Responsivita pro filtrování
 ========================= */
 
 @media (max-width: 600px) {
-  .grid {
-    grid-template-columns: 1fr;
+  .filters-tabbar {
+    font-size: 13px;
+    padding: 16px;
   }
 
-  header {
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .hero h2 {
-    font-size: 1.8rem;
+  .filters-tabbar .filter-buttons button {
+    padding: 6px 12px;
+    font-size: 13px;
   }
 }
