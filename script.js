@@ -11,6 +11,40 @@ function toggleTheme() {
   }
 }
 
+// Zjistí, jestli je uživatel přihlášen, podle jednoduchého flagu v localStorage
+function isUserLoggedIn() {
+  return localStorage.getItem("loggedInUser") !== null;
+}
+
+// Nastaví zobrazení menu a tlačítek podle stavu přihlášení
+function updateAuthUI() {
+  const authButtons = document.getElementById("auth-buttons");
+  const userButtons = document.getElementById("user-buttons");
+  const profileLink = document.getElementById("profile-link");
+
+  if (isUserLoggedIn()) {
+    if (authButtons) authButtons.style.display = "none";
+    if (userButtons) userButtons.style.display = "block";
+    if (profileLink) profileLink.style.display = "inline";
+  } else {
+    if (authButtons) authButtons.style.display = "flex";
+    if (userButtons) userButtons.style.display = "none";
+    if (profileLink) profileLink.style.display = "none";
+  }
+}
+
+// Simulovaná funkce pro přihlášení (nastaví flag v localStorage)
+function loginUser(username) {
+  localStorage.setItem("loggedInUser", username);
+  updateAuthUI();
+}
+
+// Odhlášení uživatele - smaže flag a aktualizuje UI
+function logoutUser() {
+  localStorage.removeItem("loggedInUser");
+  updateAuthUI();
+}
+
 window.addEventListener("DOMContentLoaded", () => {
   const theme = localStorage.getItem("theme");
   if (theme === "dark") {
@@ -22,6 +56,19 @@ window.addEventListener("DOMContentLoaded", () => {
   const toggleBtn = document.querySelector(".toggle");
   if (toggleBtn) {
     toggleBtn.addEventListener("click", toggleTheme);
+  }
+
+  // Inicializace autentizačního stavu UI
+  updateAuthUI();
+
+  // Přidání obsluhy odhlášení
+  const logoutBtn = document.getElementById("logout-btn");
+  if (logoutBtn) {
+    logoutBtn.addEventListener("click", () => {
+      logoutUser();
+      // Po odhlášení přesměruj na homepage např.
+      window.location.href = "index.html";
+    });
   }
 
   // Inicializace filtrů
