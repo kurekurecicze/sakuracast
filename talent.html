@@ -9,7 +9,9 @@
 <body>
 
 <header>
-  <div class="logo"><a href="index.html" style="text-decoration:none; color:inherit;">🌸 SakuraCast</a></div>
+  <div class="logo">
+    <a href="index.html" style="text-decoration:none; color:inherit;">🌸 SakuraCast</a>
+  </div>
 
   <nav>
     <a href="projects.html">Projects</a>
@@ -51,60 +53,6 @@
 <footer>
   <p>© 2024 SakuraCast • Built with 🌸</p>
 </footer>
-
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  fetch('filters.html')
-    .then(response => response.text())
-    .then(html => {
-      document.getElementById('filter-container').innerHTML = html;
-
-      document.querySelectorAll('.filters-tabbar .filter-buttons button').forEach(btn => {
-        btn.addEventListener('click', () => {
-          btn.classList.toggle('active');
-          filterTalent();
-        });
-      });
-
-      const clearBtn = document.getElementById('clear-filters');
-      if(clearBtn){
-        clearBtn.addEventListener('click', () => {
-          document.querySelectorAll('.filters-tabbar .filter-buttons button.active').forEach(b => b.classList.remove('active'));
-          filterTalent();
-        });
-      }
-
-      filterTalent();
-    });
-});
-
-function filterTalent() {
-  const talents = document.querySelectorAll('#talent-list .card');
-
-  const activeFilters = {};
-  document.querySelectorAll('.filters-tabbar .filter-buttons').forEach(group => {
-    const filterName = group.getAttribute('data-filter-name');
-    activeFilters[filterName] = Array.from(group.querySelectorAll('button.active')).map(b => b.getAttribute('data-filter-value'));
-  });
-
-  talents.forEach(talent => {
-    let visible = true;
-    for(let key in activeFilters){
-      if(activeFilters[key].length === 0) continue;
-      let dataKey = key.toLowerCase();
-      if(key === 'voiceGender') dataKey = 'gender';
-
-      const val = talent.getAttribute('data-' + dataKey);
-
-      if(!activeFilters[key].includes(val)){
-        visible = false;
-        break;
-      }
-    }
-    talent.style.display = visible ? '' : 'none';
-  });
-}
-</script>
 
 <script src="script.js"></script>
 </body>
