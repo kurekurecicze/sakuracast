@@ -21,35 +21,31 @@
 <main class="container">
   <h1>Talent Search</h1>
 
-  <!-- Filtr se načte sem -->
   <div id="filter-container"></div>
 
-  <section>
-    <div class="grid" id="talent-list">
+  <section class="grid" id="talent-list">
 
-      <div class="card" data-gender="Female" data-age="Young Adult" data-accent="Japanese" data-style="Soft" data-availability="Immediate">
-        <h3>Yuki VA</h3>
-        <p>Japanese / English • Soft Anime Voices</p>
-      </div>
-
-      <div class="card" data-gender="Male" data-age="Adult" data-accent="American English" data-style="Deep" data-availability="Within a week">
-        <h3>Max Stone</h3>
-        <p>Deep male voice • Game characters</p>
-      </div>
-
-      <div class="card" data-gender="Female" data-age="Adult" data-accent="British English" data-style="Neutral" data-availability="Negotiable">
-        <h3>Luna Rose</h3>
-        <p>Commercial / soft voice</p>
-      </div>
-
-      <div class="card" data-gender="Non-binary" data-age="Middle-aged" data-accent="Czech" data-style="Emotional" data-availability="Within a month">
-        <h3>Alex Novak</h3>
-        <p>Versatile voice • Emotional roles</p>
-      </div>
-
+    <div class="card" data-gender="Female" data-age="Young Adult" data-accent="Japanese" data-style="Soft" data-availability="Immediate">
+      <h3>Yuki VA</h3>
+      <p>Japanese / English • Soft Anime Voices</p>
     </div>
-  </section>
 
+    <div class="card" data-gender="Male" data-age="Adult" data-accent="American English" data-style="Deep" data-availability="Within a week">
+      <h3>Max Stone</h3>
+      <p>Deep male voice • Game characters</p>
+    </div>
+
+    <div class="card" data-gender="Female" data-age="Adult" data-accent="British English" data-style="Neutral" data-availability="Negotiable">
+      <h3>Luna Rose</h3>
+      <p>Commercial / soft voice</p>
+    </div>
+
+    <div class="card" data-gender="Non-binary" data-age="Middle-aged" data-accent="Czech" data-style="Emotional" data-availability="Within a month">
+      <h3>Alex Novak</h3>
+      <p>Versatile voice • Emotional roles</p>
+    </div>
+
+  </section>
 </main>
 
 <footer>
@@ -57,53 +53,55 @@
 </footer>
 
 <script>
-// Načtení externího filtru z filters.html
 document.addEventListener('DOMContentLoaded', () => {
   fetch('filters.html')
     .then(response => response.text())
     .then(html => {
       document.getElementById('filter-container').innerHTML = html;
 
+      document.querySelectorAll('.filters-tabbar .filter-buttons button').forEach(btn => {
+        btn.addEventListener('click', () => {
+          btn.classList.toggle('active');
+          filterTalent();
+        });
+      });
+
+      const clearBtn = document.getElementById('clear-filters');
+      if(clearBtn){
+        clearBtn.addEventListener('click', () => {
+          document.querySelectorAll('.filters-tabbar .filter-buttons button.active').forEach(b => b.classList.remove('active'));
+          filterTalent();
+        });
+      }
+
       filterTalent();
-
-      document.querySelectorAll('.filters input[type="checkbox"]').forEach(input => {
-        input.addEventListener('change', filterTalent);
-      });
-
-      document.getElementById('clear-filters').addEventListener('click', () => {
-        document.querySelectorAll('.filters input[type="checkbox"]').forEach(i => i.checked = false);
-        filterTalent();
-      });
     });
 });
 
 function filterTalent() {
   const talents = document.querySelectorAll('#talent-list .card');
 
-  function getCheckedValues(name) {
-    return Array.from(document.querySelectorAll(`input[name="${name}"]:checked`)).map(i => i.value);
-  }
+  const activeFilters = {};
+  document.querySelectorAll('.filters-tabbar .filter-buttons').forEach(group => {
+    const filterName = group.getAttribute('data-filter-name');
+    activeFilters[filterName] = Array.from(group.querySelectorAll('button.active')).map(b => b.getAttribute('data-filter-value'));
+  });
 
-  const selectedGenders = getCheckedValues('voiceGender').length ? getCheckedValues('voiceGender') : getCheckedValues('gender');
-  const selectedAges = getCheckedValues('age');
-  const selectedAccents = getCheckedValues('accent');
-  const selectedStyles = getCheckedValues('style');
-  const selectedAvailability = getCheckedValues('availability');
+  talents.forEach(talent => {
+    let visible = true;
+    for(let key in activeFilters){
+      if(activeFilters[key].length === 0) continue;
+      let dataKey = key.toLowerCase();
+      if(key === 'voiceGender') dataKey = 'gender';
 
-  talents.forEach(card => {
-    const gender = card.getAttribute('data-gender');
-    const age = card.getAttribute('data-age');
-    const accent = card.getAttribute('data-accent');
-    const style = card.getAttribute('data-style');
-    const availability = card.getAttribute('data-availability');
+      const val = talent.getAttribute('data-' + dataKey);
 
-    const matchesGender = selectedGenders.length === 0 || selectedGenders.includes(gender);
-    const matchesAge = selectedAges.length === 0 || selectedAges.includes(age);
-    const matchesAccent = selectedAccents.length === 0 || selectedAccents.includes(accent);
-    const matchesStyle = selectedStyles.length === 0 || selectedStyles.includes(style);
-    const matchesAvailability = selectedAvailability.length === 0 || selectedAvailability.includes(availability);
-
-    card.style.display = matchesGender && matchesAge && matchesAccent && matchesStyle && matchesAvailability ? '' : 'none';
+      if(!activeFilters[key].includes(val)){
+        visible = false;
+        break;
+      }
+    }
+    talent.style.display = visible ? '' : 'none';
   });
 }
 </script>
